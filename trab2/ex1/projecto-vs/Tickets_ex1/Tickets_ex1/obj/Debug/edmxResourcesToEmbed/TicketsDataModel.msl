@@ -1,0 +1,317 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="TicketsModelStoreContainer" CdmEntityContainer="TicketsEntities">
+    <EntitySetMapping Name="Requests">
+      <EntityTypeMapping TypeName="TicketsModel.Request">
+        <MappingFragment StoreEntitySet="Request">
+          <ScalarProperty Name="orderNumber" ColumnName="orderNumber" />
+          <ScalarProperty Name="requestDate" ColumnName="requestDate" />
+          <ScalarProperty Name="responseDate" ColumnName="responseDate" />
+          <ScalarProperty Name="response" ColumnName="response" />
+          <ScalarProperty Name="ticket" ColumnName="ticket" />
+          <ScalarProperty Name="ticketUser" ColumnName="ticketUser" />
+          <ScalarProperty Name="technician" ColumnName="technician" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Steps">
+      <EntityTypeMapping TypeName="TicketsModel.Step">
+        <MappingFragment StoreEntitySet="Step">
+          <ScalarProperty Name="orderNumber" ColumnName="orderNumber" />
+          <ScalarProperty Name="description" ColumnName="description" />
+          <ScalarProperty Name="ticketType" ColumnName="ticketType" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Technicians">
+      <EntityTypeMapping TypeName="TicketsModel.Technician">
+        <MappingFragment StoreEntitySet="Technician">
+          <ScalarProperty Name="anumber" ColumnName="anumber" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="name" ColumnName="name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Tickets">
+      <EntityTypeMapping TypeName="TicketsModel.Ticket">
+        <MappingFragment StoreEntitySet="Ticket">
+          <ScalarProperty Name="cod" ColumnName="cod" />
+          <ScalarProperty Name="ticketState" ColumnName="ticketState" />
+          <ScalarProperty Name="ticketDescription" ColumnName="ticketDescription" />
+          <ScalarProperty Name="ticketPriority" ColumnName="ticketPriority" />
+          <ScalarProperty Name="creationDate" ColumnName="creationDate" />
+          <ScalarProperty Name="closeDate" ColumnName="closeDate" />
+          <ScalarProperty Name="visible" ColumnName="visible" />
+          <ScalarProperty Name="technician" ColumnName="technician" />
+          <ScalarProperty Name="ticketType" ColumnName="ticketType" />
+          <ScalarProperty Name="ticketUser" ColumnName="ticketUser" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Ticket_Action">
+      <EntityTypeMapping TypeName="TicketsModel.Ticket_Action">
+        <MappingFragment StoreEntitySet="Ticket_Action">
+          <ScalarProperty Name="orderNumber" ColumnName="orderNumber" />
+          <ScalarProperty Name="beginDate" ColumnName="beginDate" />
+          <ScalarProperty Name="endDate" ColumnName="endDate" />
+          <ScalarProperty Name="note" ColumnName="note" />
+          <ScalarProperty Name="ticket" ColumnName="ticket" />
+          <ScalarProperty Name="stepTicketType" ColumnName="stepTicketType" />
+          <ScalarProperty Name="stepOrderNumber" ColumnName="stepOrderNumber" />
+          <ScalarProperty Name="technician" ColumnName="technician" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Ticket_Log">
+      <EntityTypeMapping TypeName="TicketsModel.Ticket_Log">
+        <MappingFragment StoreEntitySet="Ticket_Log">
+          <ScalarProperty Name="orderNumber" ColumnName="orderNumber" />
+          <ScalarProperty Name="sqlCommand" ColumnName="sqlCommand" />
+          <ScalarProperty Name="modificationDate" ColumnName="modificationDate" />
+          <ScalarProperty Name="ticket" ColumnName="ticket" />
+          <ScalarProperty Name="technician" ColumnName="technician" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Ticket_Type">
+      <EntityTypeMapping TypeName="TicketsModel.Ticket_Type">
+        <MappingFragment StoreEntitySet="Ticket_Type">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Ticket_User">
+      <EntityTypeMapping TypeName="TicketsModel.Ticket_User">
+        <MappingFragment StoreEntitySet="Ticket_User">
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="vi_Request">
+      <EntityTypeMapping TypeName="TicketsModel.vi_Request">
+        <MappingFragment StoreEntitySet="vi_Request">
+          <ScalarProperty Name="orderNumber" ColumnName="orderNumber" />
+          <ScalarProperty Name="requestDate" ColumnName="requestDate" />
+          <ScalarProperty Name="responseDate" ColumnName="responseDate" />
+          <ScalarProperty Name="response" ColumnName="response" />
+          <ScalarProperty Name="ticket" ColumnName="ticket" />
+          <ScalarProperty Name="ticketUser" ColumnName="ticketUser" />
+          <ScalarProperty Name="technician" ColumnName="technician" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="vi_Ticket">
+      <EntityTypeMapping TypeName="TicketsModel.vi_Ticket">
+        <MappingFragment StoreEntitySet="vi_Ticket">
+          <ScalarProperty Name="cod" ColumnName="cod" />
+          <ScalarProperty Name="ticketState" ColumnName="ticketState" />
+          <ScalarProperty Name="ticketDescription" ColumnName="ticketDescription" />
+          <ScalarProperty Name="ticketPriority" ColumnName="ticketPriority" />
+          <ScalarProperty Name="creationDate" ColumnName="creationDate" />
+          <ScalarProperty Name="closeDate" ColumnName="closeDate" />
+          <ScalarProperty Name="visible" ColumnName="visible" />
+          <ScalarProperty Name="technician" ColumnName="technician" />
+          <ScalarProperty Name="ticketType" ColumnName="ticketType" />
+          <ScalarProperty Name="ticketUser" ColumnName="ticketUser" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="vi_Ticket_Action">
+      <EntityTypeMapping TypeName="TicketsModel.vi_Ticket_Action">
+        <MappingFragment StoreEntitySet="vi_Ticket_Action">
+          <ScalarProperty Name="orderNumber" ColumnName="orderNumber" />
+          <ScalarProperty Name="beginDate" ColumnName="beginDate" />
+          <ScalarProperty Name="endDate" ColumnName="endDate" />
+          <ScalarProperty Name="note" ColumnName="note" />
+          <ScalarProperty Name="ticket" ColumnName="ticket" />
+          <ScalarProperty Name="stepTicketType" ColumnName="stepTicketType" />
+          <ScalarProperty Name="stepOrderNumber" ColumnName="stepOrderNumber" />
+          <ScalarProperty Name="technician" ColumnName="technician" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="vi_Ticket_Log">
+      <EntityTypeMapping TypeName="TicketsModel.vi_Ticket_Log">
+        <MappingFragment StoreEntitySet="vi_Ticket_Log">
+          <ScalarProperty Name="orderNumber" ColumnName="orderNumber" />
+          <ScalarProperty Name="sqlCommand" ColumnName="sqlCommand" />
+          <ScalarProperty Name="modificationDate" ColumnName="modificationDate" />
+          <ScalarProperty Name="ticket" ColumnName="ticket" />
+          <ScalarProperty Name="technician" ColumnName="technician" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionName="TicketsModel.Store.func_Get_Most_Priority_Tickets" FunctionImportName="func_Get_Most_Priority_Tickets">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="TicketsModel.func_Get_Most_Priority_Tickets_Result">
+          <ScalarProperty Name="cod" ColumnName="cod" />
+          <ScalarProperty Name="ticketState" ColumnName="ticketState" />
+          <ScalarProperty Name="ticketDescription" ColumnName="ticketDescription" />
+          <ScalarProperty Name="ticketPriority" ColumnName="ticketPriority" />
+          <ScalarProperty Name="creationDate" ColumnName="creationDate" />
+          <ScalarProperty Name="closeDate" ColumnName="closeDate" />
+          <ScalarProperty Name="visible" ColumnName="visible" />
+          <ScalarProperty Name="technician" ColumnName="technician" />
+          <ScalarProperty Name="ticketType" ColumnName="ticketType" />
+          <ScalarProperty Name="ticketUser" ColumnName="ticketUser" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="proc_Get_Ticket_Info" FunctionName="TicketsModel.Store.proc_Get_Ticket_Info">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="TicketsModel.proc_Get_Ticket_Info_Result">
+          <ScalarProperty Name="cod" ColumnName="cod" />
+          <ScalarProperty Name="ticketState" ColumnName="ticketState" />
+          <ScalarProperty Name="ticketDescription" ColumnName="ticketDescription" />
+          <ScalarProperty Name="anumber" ColumnName="anumber" />
+          <ScalarProperty Name="tech_email" ColumnName="tech_email" />
+          <ScalarProperty Name="tech_name" ColumnName="tech_name" />
+          <ScalarProperty Name="tt_id" ColumnName="tt_id" />
+          <ScalarProperty Name="tt_name" ColumnName="tt_name" />
+          <ScalarProperty Name="owner_email" ColumnName="owner_email" />
+          <ScalarProperty Name="owner_name" ColumnName="owner_name" />
+          <ScalarProperty Name="owner_id" ColumnName="owner_id" />
+          <ScalarProperty Name="orderNumber" ColumnName="orderNumber" />
+          <ScalarProperty Name="beginDate" ColumnName="beginDate" />
+          <ScalarProperty Name="endDate" ColumnName="endDate" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_Answer_Ticket_Request" FunctionName="TicketsModel.Store.sp_Answer_Ticket_Request" />
+    <FunctionImportMapping FunctionImportName="sp_Assign_Technician_To_Tickets" FunctionName="TicketsModel.Store.sp_Assign_Technician_To_Tickets" />
+    <FunctionImportMapping FunctionImportName="sp_Assign_Type_To_Ticket" FunctionName="TicketsModel.Store.sp_Assign_Type_To_Ticket" />
+    <FunctionImportMapping FunctionImportName="sp_Close_Ticket" FunctionName="TicketsModel.Store.sp_Close_Ticket" />
+    <FunctionImportMapping FunctionImportName="sp_Delete_Technician" FunctionName="TicketsModel.Store.sp_Delete_Technician" />
+    <FunctionImportMapping FunctionImportName="sp_Delete_Ticket" FunctionName="TicketsModel.Store.sp_Delete_Ticket" />
+    <FunctionImportMapping FunctionImportName="sp_Delete_Ticket_User" FunctionName="TicketsModel.Store.sp_Delete_Ticket_User" />
+    <FunctionImportMapping FunctionImportName="sp_End_Ticket_Action" FunctionName="TicketsModel.Store.sp_End_Ticket_Action" />
+    <FunctionImportMapping FunctionImportName="sp_Increate_Ticket_Priority" FunctionName="TicketsModel.Store.sp_Increate_Ticket_Priority" />
+    <FunctionImportMapping FunctionImportName="sp_Insert_Step" FunctionName="TicketsModel.Store.sp_Insert_Step" />
+    <FunctionImportMapping FunctionImportName="sp_Insert_Technician" FunctionName="TicketsModel.Store.sp_Insert_Technician" />
+    <FunctionImportMapping FunctionImportName="sp_Insert_Ticket" FunctionName="TicketsModel.Store.sp_Insert_Ticket">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="TicketsModel.sp_Insert_Ticket_Result">
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_Insert_Ticket_Action" FunctionName="TicketsModel.Store.sp_Insert_Ticket_Action" />
+    <FunctionImportMapping FunctionImportName="sp_Insert_Ticket_Log" FunctionName="TicketsModel.Store.sp_Insert_Ticket_Log" />
+    <FunctionImportMapping FunctionImportName="sp_Insert_Ticket_Type" FunctionName="TicketsModel.Store.sp_Insert_Ticket_Type" />
+    <FunctionImportMapping FunctionImportName="sp_Insert_Ticket_User" FunctionName="TicketsModel.Store.sp_Insert_Ticket_User" />
+    <FunctionImportMapping FunctionImportName="sp_List_Ticket_Actions" FunctionName="TicketsModel.Store.sp_List_Ticket_Actions">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="TicketsModel.sp_List_Ticket_Actions_Result">
+          <ScalarProperty Name="cod" ColumnName="cod" />
+          <ScalarProperty Name="ticketState" ColumnName="ticketState" />
+          <ScalarProperty Name="ticketDescription" ColumnName="ticketDescription" />
+          <ScalarProperty Name="ticketPriority" ColumnName="ticketPriority" />
+          <ScalarProperty Name="beginDate" ColumnName="beginDate" />
+          <ScalarProperty Name="stepTicketType" ColumnName="stepTicketType" />
+          <ScalarProperty Name="stepOrderNumber" ColumnName="stepOrderNumber" />
+          <ScalarProperty Name="note" ColumnName="note" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_List_Ticket_Requests" FunctionName="TicketsModel.Store.sp_List_Ticket_Requests">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="TicketsModel.sp_List_Ticket_Requests_Result">
+          <ScalarProperty Name="cod" ColumnName="cod" />
+          <ScalarProperty Name="ticketState" ColumnName="ticketState" />
+          <ScalarProperty Name="ticketDescription" ColumnName="ticketDescription" />
+          <ScalarProperty Name="ticketPriority" ColumnName="ticketPriority" />
+          <ScalarProperty Name="requestDate" ColumnName="requestDate" />
+          <ScalarProperty Name="responseDate" ColumnName="responseDate" />
+          <ScalarProperty Name="response" ColumnName="response" />
+          <ScalarProperty Name="technician" ColumnName="technician" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_List_Tickets_By_Date" FunctionName="TicketsModel.Store.sp_List_Tickets_By_Date">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="TicketsModel.sp_List_Tickets_By_Date_Result">
+          <ScalarProperty Name="cod" ColumnName="cod" />
+          <ScalarProperty Name="ticketState" ColumnName="ticketState" />
+          <ScalarProperty Name="ticketDescription" ColumnName="ticketDescription" />
+          <ScalarProperty Name="ticketPriority" ColumnName="ticketPriority" />
+          <ScalarProperty Name="creationDate" ColumnName="creationDate" />
+          <ScalarProperty Name="closeDate" ColumnName="closeDate" />
+          <ScalarProperty Name="visible" ColumnName="visible" />
+          <ScalarProperty Name="technician" ColumnName="technician" />
+          <ScalarProperty Name="ticketType" ColumnName="ticketType" />
+          <ScalarProperty Name="ticketUser" ColumnName="ticketUser" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_List_Tickets_By_Priority" FunctionName="TicketsModel.Store.sp_List_Tickets_By_Priority">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="TicketsModel.sp_List_Tickets_By_Priority_Result">
+          <ScalarProperty Name="cod" ColumnName="cod" />
+          <ScalarProperty Name="ticketState" ColumnName="ticketState" />
+          <ScalarProperty Name="ticketDescription" ColumnName="ticketDescription" />
+          <ScalarProperty Name="ticketPriority" ColumnName="ticketPriority" />
+          <ScalarProperty Name="creationDate" ColumnName="creationDate" />
+          <ScalarProperty Name="closeDate" ColumnName="closeDate" />
+          <ScalarProperty Name="visible" ColumnName="visible" />
+          <ScalarProperty Name="technician" ColumnName="technician" />
+          <ScalarProperty Name="ticketType" ColumnName="ticketType" />
+          <ScalarProperty Name="ticketUser" ColumnName="ticketUser" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_List_Tickets_By_State" FunctionName="TicketsModel.Store.sp_List_Tickets_By_State">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="TicketsModel.sp_List_Tickets_By_State_Result">
+          <ScalarProperty Name="cod" ColumnName="cod" />
+          <ScalarProperty Name="ticketState" ColumnName="ticketState" />
+          <ScalarProperty Name="ticketDescription" ColumnName="ticketDescription" />
+          <ScalarProperty Name="ticketPriority" ColumnName="ticketPriority" />
+          <ScalarProperty Name="creationDate" ColumnName="creationDate" />
+          <ScalarProperty Name="closeDate" ColumnName="closeDate" />
+          <ScalarProperty Name="visible" ColumnName="visible" />
+          <ScalarProperty Name="technician" ColumnName="technician" />
+          <ScalarProperty Name="ticketType" ColumnName="ticketType" />
+          <ScalarProperty Name="ticketUser" ColumnName="ticketUser" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_List_Tickets_By_Type" FunctionName="TicketsModel.Store.sp_List_Tickets_By_Type">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="TicketsModel.sp_List_Tickets_By_Type_Result">
+          <ScalarProperty Name="cod" ColumnName="cod" />
+          <ScalarProperty Name="ticketState" ColumnName="ticketState" />
+          <ScalarProperty Name="ticketDescription" ColumnName="ticketDescription" />
+          <ScalarProperty Name="ticketPriority" ColumnName="ticketPriority" />
+          <ScalarProperty Name="creationDate" ColumnName="creationDate" />
+          <ScalarProperty Name="closeDate" ColumnName="closeDate" />
+          <ScalarProperty Name="visible" ColumnName="visible" />
+          <ScalarProperty Name="technician" ColumnName="technician" />
+          <ScalarProperty Name="ticketType" ColumnName="ticketType" />
+          <ScalarProperty Name="ticketUser" ColumnName="ticketUser" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_Request_Ticket_Info" FunctionName="TicketsModel.Store.sp_Request_Ticket_Info" />
+    <FunctionImportMapping FunctionImportName="sp_Update_Technician" FunctionName="TicketsModel.Store.sp_Update_Technician" />
+    <FunctionImportMapping FunctionImportName="sp_Update_Ticket_Priority" FunctionName="TicketsModel.Store.sp_Update_Ticket_Priority" />
+    <FunctionImportMapping FunctionImportName="sp_Update_Ticket_User" FunctionName="TicketsModel.Store.sp_Update_Ticket_User" />
+    <FunctionImportMapping FunctionImportName="proc_Get_Ticket_Steps" FunctionName="TicketsModel.Store.proc_Get_Ticket_Steps">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="TicketsModel.proc_Get_Ticket_Steps_Result">
+          <ScalarProperty Name="orderNumber" ColumnName="orderNumber" />
+          <ScalarProperty Name="description" ColumnName="description" />
+          <ScalarProperty Name="technician" ColumnName="technician" />
+          <ScalarProperty Name="ticketState" ColumnName="ticketState" />
+          <ScalarProperty Name="ticketType" ColumnName="ticketType" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="proc_Assign_Technician" FunctionName="TicketsModel.Store.proc_Assign_Technician" />
+    <FunctionImportMapping FunctionImportName="proc_Remove_Ticket" FunctionName="TicketsModel.Store.proc_Remove_Ticket" />
+  </EntityContainerMapping>
+</Mapping>

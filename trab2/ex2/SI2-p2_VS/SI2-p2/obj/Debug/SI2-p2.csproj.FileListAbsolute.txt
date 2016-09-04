@@ -1,0 +1,28 @@
+c:\users\tiago\documents\visual studio 2015\Projects\SI2-p2\SI2-p2\bin\Debug\SI2-p2.exe.config
+C:\Users\Tiago\documents\visual studio 2015\Projects\SI2-p2\SI2-p2\bin\Debug\SI2-p2.exe
+C:\Users\Tiago\documents\visual studio 2015\Projects\SI2-p2\SI2-p2\bin\Debug\SI2-p2.pdb
+C:\Users\Tiago\documents\visual studio 2015\Projects\SI2-p2\SI2-p2\obj\Debug\SI2-p2.csprojResolveAssemblyReference.cache
+C:\Users\Tiago\documents\visual studio 2015\Projects\SI2-p2\SI2-p2\obj\Debug\SI2_p2.Properties.Resources.resources
+C:\Users\Tiago\documents\visual studio 2015\Projects\SI2-p2\SI2-p2\obj\Debug\SI2-p2.csproj.GenerateResource.Cache
+C:\Users\Tiago\documents\visual studio 2015\Projects\SI2-p2\SI2-p2\obj\Debug\SI2-p2.exe
+C:\Users\Tiago\documents\visual studio 2015\Projects\SI2-p2\SI2-p2\obj\Debug\SI2-p2.pdb
+C:\Users\Tiago\Documents\Visual Studio 2015\Projects\SI2-p2\SI2-p2\obj\Debug\SI2_p2.Form_AssignTechnician.resources
+C:\Users\Tiago\Documents\Visual Studio 2015\Projects\SI2-p2\SI2-p2\obj\Debug\SI2_p2.Form_ListTickets.resources
+C:\Users\Tiago\Documents\Visual Studio 2015\Projects\SI2-p2\SI2-p2\obj\Debug\SI2_p2.Form_Menu.resources
+C:\Users\Tiago\Documents\Visual Studio 2015\Projects\SI2-p2\SI2-p2\obj\Debug\SI2_p2.Form_RemoveTicket.resources
+C:\Users\Tiago\documents\visual studio 2015\Projects\SI2-p2\SI2-p2\obj\Debug\SI2_p2.Form_InsertAction.resources
+C:\Users\Tiago\documents\visual studio 2015\Projects\SI2-p2\SI2-p2\obj\Debug\SI2_p2.Form_ExportTicketToXML.resources
+C:\Users\Paula\isel\si2\rep\si2_grupo_x\si2_grupo_x\SI2-p2_VS\SI2-p2\bin\Debug\SI2-p2.exe.config
+C:\Users\Paula\isel\si2\rep\si2_grupo_x\si2_grupo_x\SI2-p2_VS\SI2-p2\obj\Debug\SI2-p2.exe
+C:\Users\Paula\isel\si2\rep\si2_grupo_x\si2_grupo_x\SI2-p2_VS\SI2-p2\obj\Debug\SI2-p2.pdb
+C:\Users\Paula\isel\si2\rep\si2_grupo_x\si2_grupo_x\SI2-p2_VS\SI2-p2\bin\Debug\SI2-p2.exe
+C:\Users\Paula\isel\si2\rep\si2_grupo_x\si2_grupo_x\SI2-p2_VS\SI2-p2\bin\Debug\SI2-p2.pdb
+C:\Users\Paula\isel\si2\rep\si2_grupo_x\si2_grupo_x\SI2-p2_VS\SI2-p2\obj\Debug\SI2-p2.csprojResolveAssemblyReference.cache
+C:\Users\Paula\isel\si2\rep\si2_grupo_x\si2_grupo_x\SI2-p2_VS\SI2-p2\obj\Debug\SI2_p2.Form_AssignTechnician.resources
+C:\Users\Paula\isel\si2\rep\si2_grupo_x\si2_grupo_x\SI2-p2_VS\SI2-p2\obj\Debug\SI2_p2.Form_ExportTicketToXML.resources
+C:\Users\Paula\isel\si2\rep\si2_grupo_x\si2_grupo_x\SI2-p2_VS\SI2-p2\obj\Debug\SI2_p2.Form_InsertAction.resources
+C:\Users\Paula\isel\si2\rep\si2_grupo_x\si2_grupo_x\SI2-p2_VS\SI2-p2\obj\Debug\SI2_p2.Form_ListTickets.resources
+C:\Users\Paula\isel\si2\rep\si2_grupo_x\si2_grupo_x\SI2-p2_VS\SI2-p2\obj\Debug\SI2_p2.Form_Menu.resources
+C:\Users\Paula\isel\si2\rep\si2_grupo_x\si2_grupo_x\SI2-p2_VS\SI2-p2\obj\Debug\SI2_p2.Form_RemoveTicket.resources
+C:\Users\Paula\isel\si2\rep\si2_grupo_x\si2_grupo_x\SI2-p2_VS\SI2-p2\obj\Debug\SI2_p2.Properties.Resources.resources
+C:\Users\Paula\isel\si2\rep\si2_grupo_x\si2_grupo_x\SI2-p2_VS\SI2-p2\obj\Debug\SI2-p2.csproj.GenerateResource.Cache

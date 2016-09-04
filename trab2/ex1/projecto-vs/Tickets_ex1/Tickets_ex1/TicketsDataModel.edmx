@@ -1,0 +1,1497 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="TicketsModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Request">
+          <Key>
+            <PropertyRef Name="orderNumber" />
+            <PropertyRef Name="ticket" />
+          </Key>
+          <Property Name="orderNumber" Type="int" Nullable="false" />
+          <Property Name="requestDate" Type="datetime" />
+          <Property Name="responseDate" Type="datetime" />
+          <Property Name="response" Type="varchar(max)" />
+          <Property Name="ticket" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="ticketUser" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="technician" Type="int" />
+        </EntityType>
+        <EntityType Name="Step">
+          <Key>
+            <PropertyRef Name="orderNumber" />
+            <PropertyRef Name="ticketType" />
+          </Key>
+          <Property Name="orderNumber" Type="int" Nullable="false" />
+          <Property Name="description" Type="varchar" MaxLength="100" />
+          <Property Name="ticketType" Type="varchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Technician">
+          <Key>
+            <PropertyRef Name="anumber" />
+          </Key>
+          <Property Name="anumber" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="email" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Ticket">
+          <Key>
+            <PropertyRef Name="cod" />
+          </Key>
+          <Property Name="cod" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="ticketState" Type="varchar" MaxLength="20" />
+          <Property Name="ticketDescription" Type="varchar(max)" Nullable="false" />
+          <Property Name="ticketPriority" Type="varchar" MaxLength="20" />
+          <Property Name="creationDate" Type="datetime" Nullable="false" />
+          <Property Name="closeDate" Type="datetime" />
+          <Property Name="visible" Type="bit" />
+          <Property Name="technician" Type="int" />
+          <Property Name="ticketType" Type="varchar" MaxLength="20" />
+          <Property Name="ticketUser" Type="varchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Ticket_Action">
+          <Key>
+            <PropertyRef Name="orderNumber" />
+            <PropertyRef Name="ticket" />
+          </Key>
+          <Property Name="orderNumber" Type="int" Nullable="false" />
+          <Property Name="beginDate" Type="datetime" />
+          <Property Name="endDate" Type="datetime" />
+          <Property Name="note" Type="varchar" MaxLength="100" />
+          <Property Name="ticket" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="stepTicketType" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="stepOrderNumber" Type="int" Nullable="false" />
+          <Property Name="technician" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Ticket_Log">
+          <Key>
+            <PropertyRef Name="orderNumber" />
+            <PropertyRef Name="ticket" />
+          </Key>
+          <Property Name="orderNumber" Type="int" Nullable="false" />
+          <Property Name="sqlCommand" Type="varchar(max)" />
+          <Property Name="modificationDate" Type="datetime" />
+          <Property Name="ticket" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="technician" Type="int" />
+        </EntityType>
+        <EntityType Name="Ticket_Type">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="Ticket_User">
+          <Key>
+            <PropertyRef Name="email" />
+          </Key>
+          <Property Name="email" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="100" />
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'Tickets.dbo.vi_Request' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="vi_Request">
+          <Key>
+            <PropertyRef Name="orderNumber" />
+            <PropertyRef Name="ticket" />
+            <PropertyRef Name="ticketUser" />
+          </Key>
+          <Property Name="orderNumber" Type="int" Nullable="false" />
+          <Property Name="requestDate" Type="datetime" />
+          <Property Name="responseDate" Type="datetime" />
+          <Property Name="response" Type="varchar(max)" />
+          <Property Name="ticket" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="ticketUser" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="technician" Type="int" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'Tickets.dbo.vi_Ticket' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="vi_Ticket">
+          <Key>
+            <PropertyRef Name="cod" />
+            <PropertyRef Name="ticketDescription" />
+            <PropertyRef Name="creationDate" />
+            <PropertyRef Name="ticketUser" />
+          </Key>
+          <Property Name="cod" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="ticketState" Type="varchar" MaxLength="20" />
+          <Property Name="ticketDescription" Type="varchar(max)" Nullable="false" />
+          <Property Name="ticketPriority" Type="varchar" MaxLength="20" />
+          <Property Name="creationDate" Type="datetime" Nullable="false" />
+          <Property Name="closeDate" Type="datetime" />
+          <Property Name="visible" Type="bit" />
+          <Property Name="technician" Type="int" />
+          <Property Name="ticketType" Type="varchar" MaxLength="20" />
+          <Property Name="ticketUser" Type="varchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'Tickets.dbo.vi_Ticket_Action' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="vi_Ticket_Action">
+          <Key>
+            <PropertyRef Name="orderNumber" />
+            <PropertyRef Name="ticket" />
+            <PropertyRef Name="stepTicketType" />
+            <PropertyRef Name="stepOrderNumber" />
+            <PropertyRef Name="technician" />
+          </Key>
+          <Property Name="orderNumber" Type="int" Nullable="false" />
+          <Property Name="beginDate" Type="datetime" />
+          <Property Name="endDate" Type="datetime" />
+          <Property Name="note" Type="varchar" MaxLength="100" />
+          <Property Name="ticket" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="stepTicketType" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="stepOrderNumber" Type="int" Nullable="false" />
+          <Property Name="technician" Type="int" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'Tickets.dbo.vi_Ticket_Log' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="vi_Ticket_Log">
+          <Key>
+            <PropertyRef Name="orderNumber" />
+            <PropertyRef Name="ticket" />
+          </Key>
+          <Property Name="orderNumber" Type="int" Nullable="false" />
+          <Property Name="sqlCommand" Type="varchar(max)" />
+          <Property Name="modificationDate" Type="datetime" />
+          <Property Name="ticket" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="technician" Type="int" />
+        </EntityType>
+        <Association Name="FK__Request__technic__257C74A0">
+          <End Role="Technician" Type="Self.Technician" Multiplicity="0..1" />
+          <End Role="Request" Type="Self.Request" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Technician">
+              <PropertyRef Name="anumber" />
+            </Principal>
+            <Dependent Role="Request">
+              <PropertyRef Name="technician" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Request__ticket__23942C2E">
+          <End Role="Ticket" Type="Self.Ticket" Multiplicity="1" />
+          <End Role="Request" Type="Self.Request" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ticket">
+              <PropertyRef Name="cod" />
+            </Principal>
+            <Dependent Role="Request">
+              <PropertyRef Name="ticket" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Request__ticketU__24885067">
+          <End Role="Ticket_User" Type="Self.Ticket_User" Multiplicity="1" />
+          <End Role="Request" Type="Self.Request" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ticket_User">
+              <PropertyRef Name="email" />
+            </Principal>
+            <Dependent Role="Request">
+              <PropertyRef Name="ticketUser" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Step__ticketType__18227982">
+          <End Role="Ticket_Type" Type="Self.Ticket_Type" Multiplicity="1" />
+          <End Role="Step" Type="Self.Step" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ticket_Type">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Step">
+              <PropertyRef Name="ticketType" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Ticket__technici__108157BA">
+          <End Role="Technician" Type="Self.Technician" Multiplicity="0..1" />
+          <End Role="Ticket" Type="Self.Ticket" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Technician">
+              <PropertyRef Name="anumber" />
+            </Principal>
+            <Dependent Role="Ticket">
+              <PropertyRef Name="technician" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Ticket__ticketTy__1269A02C">
+          <End Role="Ticket_Type" Type="Self.Ticket_Type" Multiplicity="0..1" />
+          <End Role="Ticket" Type="Self.Ticket" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ticket_Type">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Ticket">
+              <PropertyRef Name="ticketType" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Ticket__ticketUs__135DC465">
+          <End Role="Ticket_User" Type="Self.Ticket_User" Multiplicity="1" />
+          <End Role="Ticket" Type="Self.Ticket" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ticket_User">
+              <PropertyRef Name="email" />
+            </Principal>
+            <Dependent Role="Ticket">
+              <PropertyRef Name="ticketUser" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Ticket_Ac__techn__1CE72E9F">
+          <End Role="Technician" Type="Self.Technician" Multiplicity="1" />
+          <End Role="Ticket_Action" Type="Self.Ticket_Action" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Technician">
+              <PropertyRef Name="anumber" />
+            </Principal>
+            <Dependent Role="Ticket_Action">
+              <PropertyRef Name="technician" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Ticket_Ac__ticke__1AFEE62D">
+          <End Role="Ticket" Type="Self.Ticket" Multiplicity="1" />
+          <End Role="Ticket_Action" Type="Self.Ticket_Action" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ticket">
+              <PropertyRef Name="cod" />
+            </Principal>
+            <Dependent Role="Ticket_Action">
+              <PropertyRef Name="ticket" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Ticket_Action__1BF30A66">
+          <End Role="Step" Type="Self.Step" Multiplicity="1" />
+          <End Role="Ticket_Action" Type="Self.Ticket_Action" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Step">
+              <PropertyRef Name="ticketType" />
+              <PropertyRef Name="orderNumber" />
+            </Principal>
+            <Dependent Role="Ticket_Action">
+              <PropertyRef Name="stepTicketType" />
+              <PropertyRef Name="stepOrderNumber" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Ticket_Lo__techn__20B7BF83">
+          <End Role="Technician" Type="Self.Technician" Multiplicity="0..1" />
+          <End Role="Ticket_Log" Type="Self.Ticket_Log" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Technician">
+              <PropertyRef Name="anumber" />
+            </Principal>
+            <Dependent Role="Ticket_Log">
+              <PropertyRef Name="technician" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Ticket_Lo__ticke__1FC39B4A">
+          <End Role="Ticket" Type="Self.Ticket" Multiplicity="1" />
+          <End Role="Ticket_Log" Type="Self.Ticket_Log" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ticket">
+              <PropertyRef Name="cod" />
+            </Principal>
+            <Dependent Role="Ticket_Log">
+              <PropertyRef Name="ticket" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="func_Calculate_Response_Time" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="varchar">
+          <Parameter Name="requestDate" Type="datetime" Mode="In" />
+          <Parameter Name="ticket" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="func_Check_Priority" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="bit">
+          <Parameter Name="priority" Type="varchar" Mode="In" />
+          <Parameter Name="newPriority" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="func_Get_Most_Priority_Tickets" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="n" Type="int" Mode="In" />
+          <ReturnType>
+            <CollectionType>
+              <RowType>
+                <Property Name="cod" Type="varchar" MaxLength="20" />
+                <Property Name="ticketState" Type="varchar" MaxLength="20" />
+                <Property Name="ticketDescription" Type="varchar(max)" />
+                <Property Name="ticketPriority" Type="varchar" MaxLength="20" />
+                <Property Name="creationDate" Type="datetime" />
+                <Property Name="closeDate" Type="datetime" />
+                <Property Name="visible" Type="bit" />
+                <Property Name="technician" Type="int" />
+                <Property Name="ticketType" Type="varchar" MaxLength="20" />
+                <Property Name="ticketUser" Type="varchar" MaxLength="100" />
+              </RowType>
+            </CollectionType>
+          </ReturnType>
+        </Function>
+        <Function Name="func_Increase_Priority" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="varchar">
+          <Parameter Name="ticket" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="func_Select_Technician_With_Least_Tickets" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
+        <Function Name="proc_Assign_Technician" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="tech_num" Type="int" Mode="In" />
+          <Parameter Name="cod" Type="varchar" Mode="InOut" />
+        </Function>
+        <Function Name="proc_Get_Ticket_Info" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="cod" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="proc_Get_Ticket_Steps" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="cod" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="proc_Remove_Ticket" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="cod" Type="varchar" Mode="In" />
+          <Parameter Name="res" Type="int" Mode="InOut" />
+        </Function>
+        <Function Name="sp_Answer_Ticket_Request" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="orderNumber" Type="int" Mode="In" />
+          <Parameter Name="ticket" Type="varchar" Mode="In" />
+          <Parameter Name="technician" Type="int" Mode="In" />
+          <Parameter Name="response" Type="varchar(max)" Mode="In" />
+        </Function>
+        <Function Name="sp_Assign_Technician_To_Tickets" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="sp_Assign_Type_To_Ticket" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ticket" Type="varchar" Mode="In" />
+          <Parameter Name="ticketType" Type="varchar" Mode="In" />
+          <Parameter Name="technician" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_Close_Ticket" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ticket" Type="varchar" Mode="In" />
+          <Parameter Name="technician" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_Delete_Technician" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="email" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="sp_Delete_Ticket" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="cod" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="sp_Delete_Ticket_User" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="email" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="sp_End_Ticket_Action" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="orderNumber" Type="int" Mode="In" />
+          <Parameter Name="ticket" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="sp_Increate_Ticket_Priority" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ticket" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="sp_Insert_Step" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ticketType" Type="varchar" Mode="In" />
+          <Parameter Name="description" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="sp_Insert_Technician" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="email" Type="varchar" Mode="In" />
+          <Parameter Name="name" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="sp_Insert_Ticket" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="cod" Type="varchar" Mode="In" />
+          <Parameter Name="ticketDescription" Type="varchar(max)" Mode="In" />
+          <Parameter Name="ticketUser" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="sp_Insert_Ticket_Action" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ticket" Type="varchar" Mode="In" />
+          <Parameter Name="technician" Type="int" Mode="In" />
+          <Parameter Name="stepTicketType" Type="varchar" Mode="In" />
+          <Parameter Name="stepOrderNumber" Type="int" Mode="In" />
+          <Parameter Name="note" Type="varchar" Mode="In" />
+          <Parameter Name="orderNumber" Type="int" Mode="InOut" />
+        </Function>
+        <Function Name="sp_Insert_Ticket_Log" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ticket" Type="varchar" Mode="In" />
+          <Parameter Name="sqlCommand" Type="varchar(max)" Mode="In" />
+          <Parameter Name="technician" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_Insert_Ticket_Type" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id" Type="varchar" Mode="In" />
+          <Parameter Name="name" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="sp_Insert_Ticket_User" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="email" Type="varchar" Mode="In" />
+          <Parameter Name="name" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="sp_List_Ticket_Actions" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ticket" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="sp_List_Ticket_Requests" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ticket" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="sp_List_Tickets_By_Date" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="sp_List_Tickets_By_Priority" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="sp_List_Tickets_By_State" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="sp_List_Tickets_By_Type" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="sp_Request_Ticket_Info" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ticketUser" Type="varchar" Mode="In" />
+          <Parameter Name="ticket" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="sp_Update_Technician" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="email" Type="varchar" Mode="In" />
+          <Parameter Name="name" Type="varchar" Mode="In" />
+          <Parameter Name="newEmail" Type="varchar" Mode="In" />
+          <Parameter Name="newName" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="sp_Update_Ticket_Priority" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ticket" Type="varchar" Mode="In" />
+          <Parameter Name="technician" Type="int" Mode="In" />
+          <Parameter Name="newPriority" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="sp_Update_Ticket_User" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="email" Type="varchar" Mode="In" />
+          <Parameter Name="name" Type="varchar" Mode="In" />
+          <Parameter Name="newEmail" Type="varchar" Mode="In" />
+          <Parameter Name="newName" Type="varchar" Mode="In" />
+        </Function>
+        <EntityContainer Name="TicketsModelStoreContainer">
+          <EntitySet Name="Request" EntityType="Self.Request" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Step" EntityType="Self.Step" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Technician" EntityType="Self.Technician" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Ticket" EntityType="Self.Ticket" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Ticket_Action" EntityType="Self.Ticket_Action" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Ticket_Log" EntityType="Self.Ticket_Log" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Ticket_Type" EntityType="Self.Ticket_Type" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Ticket_User" EntityType="Self.Ticket_User" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="vi_Request" EntityType="Self.vi_Request" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [vi_Request].[orderNumber] AS [orderNumber], 
+    [vi_Request].[requestDate] AS [requestDate], 
+    [vi_Request].[responseDate] AS [responseDate], 
+    [vi_Request].[response] AS [response], 
+    [vi_Request].[ticket] AS [ticket], 
+    [vi_Request].[ticketUser] AS [ticketUser], 
+    [vi_Request].[technician] AS [technician]
+    FROM [dbo].[vi_Request] AS [vi_Request]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="vi_Ticket" EntityType="Self.vi_Ticket" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [vi_Ticket].[cod] AS [cod], 
+    [vi_Ticket].[ticketState] AS [ticketState], 
+    [vi_Ticket].[ticketDescription] AS [ticketDescription], 
+    [vi_Ticket].[ticketPriority] AS [ticketPriority], 
+    [vi_Ticket].[creationDate] AS [creationDate], 
+    [vi_Ticket].[closeDate] AS [closeDate], 
+    [vi_Ticket].[visible] AS [visible], 
+    [vi_Ticket].[technician] AS [technician], 
+    [vi_Ticket].[ticketType] AS [ticketType], 
+    [vi_Ticket].[ticketUser] AS [ticketUser]
+    FROM [dbo].[vi_Ticket] AS [vi_Ticket]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="vi_Ticket_Action" EntityType="Self.vi_Ticket_Action" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [vi_Ticket_Action].[orderNumber] AS [orderNumber], 
+    [vi_Ticket_Action].[beginDate] AS [beginDate], 
+    [vi_Ticket_Action].[endDate] AS [endDate], 
+    [vi_Ticket_Action].[note] AS [note], 
+    [vi_Ticket_Action].[ticket] AS [ticket], 
+    [vi_Ticket_Action].[stepTicketType] AS [stepTicketType], 
+    [vi_Ticket_Action].[stepOrderNumber] AS [stepOrderNumber], 
+    [vi_Ticket_Action].[technician] AS [technician]
+    FROM [dbo].[vi_Ticket_Action] AS [vi_Ticket_Action]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="vi_Ticket_Log" EntityType="Self.vi_Ticket_Log" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [vi_Ticket_Log].[orderNumber] AS [orderNumber], 
+    [vi_Ticket_Log].[sqlCommand] AS [sqlCommand], 
+    [vi_Ticket_Log].[modificationDate] AS [modificationDate], 
+    [vi_Ticket_Log].[ticket] AS [ticket], 
+    [vi_Ticket_Log].[technician] AS [technician]
+    FROM [dbo].[vi_Ticket_Log] AS [vi_Ticket_Log]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK__Request__technic__257C74A0" Association="Self.FK__Request__technic__257C74A0">
+            <End Role="Technician" EntitySet="Technician" />
+            <End Role="Request" EntitySet="Request" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Request__ticket__23942C2E" Association="Self.FK__Request__ticket__23942C2E">
+            <End Role="Ticket" EntitySet="Ticket" />
+            <End Role="Request" EntitySet="Request" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Request__ticketU__24885067" Association="Self.FK__Request__ticketU__24885067">
+            <End Role="Ticket_User" EntitySet="Ticket_User" />
+            <End Role="Request" EntitySet="Request" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Step__ticketType__18227982" Association="Self.FK__Step__ticketType__18227982">
+            <End Role="Ticket_Type" EntitySet="Ticket_Type" />
+            <End Role="Step" EntitySet="Step" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Ticket__technici__108157BA" Association="Self.FK__Ticket__technici__108157BA">
+            <End Role="Technician" EntitySet="Technician" />
+            <End Role="Ticket" EntitySet="Ticket" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Ticket__ticketTy__1269A02C" Association="Self.FK__Ticket__ticketTy__1269A02C">
+            <End Role="Ticket_Type" EntitySet="Ticket_Type" />
+            <End Role="Ticket" EntitySet="Ticket" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Ticket__ticketUs__135DC465" Association="Self.FK__Ticket__ticketUs__135DC465">
+            <End Role="Ticket_User" EntitySet="Ticket_User" />
+            <End Role="Ticket" EntitySet="Ticket" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Ticket_Ac__techn__1CE72E9F" Association="Self.FK__Ticket_Ac__techn__1CE72E9F">
+            <End Role="Technician" EntitySet="Technician" />
+            <End Role="Ticket_Action" EntitySet="Ticket_Action" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Ticket_Ac__ticke__1AFEE62D" Association="Self.FK__Ticket_Ac__ticke__1AFEE62D">
+            <End Role="Ticket" EntitySet="Ticket" />
+            <End Role="Ticket_Action" EntitySet="Ticket_Action" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Ticket_Action__1BF30A66" Association="Self.FK__Ticket_Action__1BF30A66">
+            <End Role="Step" EntitySet="Step" />
+            <End Role="Ticket_Action" EntitySet="Ticket_Action" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Ticket_Lo__techn__20B7BF83" Association="Self.FK__Ticket_Lo__techn__20B7BF83">
+            <End Role="Technician" EntitySet="Technician" />
+            <End Role="Ticket_Log" EntitySet="Ticket_Log" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Ticket_Lo__ticke__1FC39B4A" Association="Self.FK__Ticket_Lo__ticke__1FC39B4A">
+            <End Role="Ticket" EntitySet="Ticket" />
+            <End Role="Ticket_Log" EntitySet="Ticket_Log" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="TicketsModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <ComplexType Name="func_Get_Most_Priority_Tickets_Result">
+          <Property Name="cod" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="ticketState" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="ticketDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="ticketPriority" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="creationDate" Type="DateTime" />
+          <Property Name="closeDate" Type="DateTime" />
+          <Property Name="visible" Type="Boolean" />
+          <Property Name="technician" Type="Int32" />
+          <Property Name="ticketType" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="ticketUser" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+        </ComplexType>
+        <EntityType Name="Request">
+          <Key>
+            <PropertyRef Name="orderNumber" />
+            <PropertyRef Name="ticket" />
+          </Key>
+          <Property Name="orderNumber" Type="Int32" Nullable="false" />
+          <Property Name="requestDate" Type="DateTime" Precision="3" />
+          <Property Name="responseDate" Type="DateTime" Precision="3" />
+          <Property Name="response" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="ticket" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ticketUser" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="technician" Type="Int32" />
+          <NavigationProperty Name="Technician1" Relationship="Self.FK__Request__technic__1B33F057" FromRole="Request" ToRole="Technician" />
+          <NavigationProperty Name="Ticket1" Relationship="Self.FK__Request__ticket__194BA7E5" FromRole="Request" ToRole="Ticket" />
+          <NavigationProperty Name="Ticket_User" Relationship="Self.FK__Request__ticketU__1A3FCC1E" FromRole="Request" ToRole="Ticket_User" />
+        </EntityType>
+        <EntityType Name="Step">
+          <Key>
+            <PropertyRef Name="orderNumber" />
+            <PropertyRef Name="ticketType" />
+          </Key>
+          <Property Name="orderNumber" Type="Int32" Nullable="false" />
+          <Property Name="description" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="ticketType" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Ticket_Type" Relationship="Self.FK__Step__ticketType__0DD9F539" FromRole="Step" ToRole="Ticket_Type" />
+          <NavigationProperty Name="Ticket_Action" Relationship="Self.FK__Ticket_Action__11AA861D" FromRole="Step" ToRole="Ticket_Action" />
+        </EntityType>
+        <EntityType Name="Technician">
+          <Key>
+            <PropertyRef Name="anumber" />
+          </Key>
+          <Property Name="anumber" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="email" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Requests" Relationship="Self.FK__Request__technic__1B33F057" FromRole="Technician" ToRole="Request" />
+          <NavigationProperty Name="Tickets" Relationship="Self.FK__Ticket__technici__0638D371" FromRole="Technician" ToRole="Ticket" />
+          <NavigationProperty Name="Ticket_Action" Relationship="Self.FK__Ticket_Ac__techn__129EAA56" FromRole="Technician" ToRole="Ticket_Action" />
+          <NavigationProperty Name="Ticket_Log" Relationship="Self.FK__Ticket_Lo__techn__166F3B3A" FromRole="Technician" ToRole="Ticket_Log" />
+        </EntityType>
+        <EntityType Name="Ticket">
+          <Key>
+            <PropertyRef Name="cod" />
+          </Key>
+          <Property Name="cod" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ticketState" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="ticketDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ticketPriority" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="creationDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="closeDate" Type="DateTime" Precision="3" />
+          <Property Name="visible" Type="Boolean" />
+          <Property Name="technician" Type="Int32" />
+          <Property Name="ticketType" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="ticketUser" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Requests" Relationship="Self.FK__Request__ticket__194BA7E5" FromRole="Ticket" ToRole="Request" />
+          <NavigationProperty Name="Technician1" Relationship="Self.FK__Ticket__technici__0638D371" FromRole="Ticket" ToRole="Technician" />
+          <NavigationProperty Name="Ticket_Type" Relationship="Self.FK__Ticket__ticketTy__08211BE3" FromRole="Ticket" ToRole="Ticket_Type" />
+          <NavigationProperty Name="Ticket_User" Relationship="Self.FK__Ticket__ticketUs__0915401C" FromRole="Ticket" ToRole="Ticket_User" />
+          <NavigationProperty Name="Ticket_Action" Relationship="Self.FK__Ticket_Ac__ticke__10B661E4" FromRole="Ticket" ToRole="Ticket_Action" />
+          <NavigationProperty Name="Ticket_Log" Relationship="Self.FK__Ticket_Lo__ticke__157B1701" FromRole="Ticket" ToRole="Ticket_Log" />
+        </EntityType>
+        <EntityType Name="Ticket_Action">
+          <Key>
+            <PropertyRef Name="orderNumber" />
+            <PropertyRef Name="ticket" />
+          </Key>
+          <Property Name="orderNumber" Type="Int32" Nullable="false" />
+          <Property Name="beginDate" Type="DateTime" Precision="3" />
+          <Property Name="endDate" Type="DateTime" Precision="3" />
+          <Property Name="note" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="ticket" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="stepTicketType" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="stepOrderNumber" Type="Int32" Nullable="false" />
+          <Property Name="technician" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Step" Relationship="Self.FK__Ticket_Action__11AA861D" FromRole="Ticket_Action" ToRole="Step" />
+          <NavigationProperty Name="Technician1" Relationship="Self.FK__Ticket_Ac__techn__129EAA56" FromRole="Ticket_Action" ToRole="Technician" />
+          <NavigationProperty Name="Ticket1" Relationship="Self.FK__Ticket_Ac__ticke__10B661E4" FromRole="Ticket_Action" ToRole="Ticket" />
+        </EntityType>
+        <EntityType Name="Ticket_Log">
+          <Key>
+            <PropertyRef Name="orderNumber" />
+            <PropertyRef Name="ticket" />
+          </Key>
+          <Property Name="orderNumber" Type="Int32" Nullable="false" />
+          <Property Name="sqlCommand" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="modificationDate" Type="DateTime" Precision="3" />
+          <Property Name="ticket" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="technician" Type="Int32" />
+          <NavigationProperty Name="Technician1" Relationship="Self.FK__Ticket_Lo__techn__166F3B3A" FromRole="Ticket_Log" ToRole="Technician" />
+          <NavigationProperty Name="Ticket1" Relationship="Self.FK__Ticket_Lo__ticke__157B1701" FromRole="Ticket_Log" ToRole="Ticket" />
+        </EntityType>
+        <EntityType Name="Ticket_Type">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Steps" Relationship="Self.FK__Step__ticketType__0DD9F539" FromRole="Ticket_Type" ToRole="Step" />
+          <NavigationProperty Name="Tickets" Relationship="Self.FK__Ticket__ticketTy__08211BE3" FromRole="Ticket_Type" ToRole="Ticket" />
+        </EntityType>
+        <EntityType Name="Ticket_User">
+          <Key>
+            <PropertyRef Name="email" />
+          </Key>
+          <Property Name="email" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="Requests" Relationship="Self.FK__Request__ticketU__1A3FCC1E" FromRole="Ticket_User" ToRole="Request" />
+          <NavigationProperty Name="Tickets" Relationship="Self.FK__Ticket__ticketUs__0915401C" FromRole="Ticket_User" ToRole="Ticket" />
+        </EntityType>
+        <EntityType Name="vi_Request">
+          <Key>
+            <PropertyRef Name="orderNumber" />
+            <PropertyRef Name="ticket" />
+            <PropertyRef Name="ticketUser" />
+          </Key>
+          <Property Name="orderNumber" Type="Int32" Nullable="false" />
+          <Property Name="requestDate" Type="DateTime" Precision="3" />
+          <Property Name="responseDate" Type="DateTime" Precision="3" />
+          <Property Name="response" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="ticket" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ticketUser" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="technician" Type="Int32" />
+        </EntityType>
+        <EntityType Name="vi_Ticket">
+          <Key>
+            <PropertyRef Name="cod" />
+            <PropertyRef Name="ticketDescription" />
+            <PropertyRef Name="creationDate" />
+            <PropertyRef Name="ticketUser" />
+          </Key>
+          <Property Name="cod" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ticketState" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="ticketDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ticketPriority" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="creationDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="closeDate" Type="DateTime" Precision="3" />
+          <Property Name="visible" Type="Boolean" />
+          <Property Name="technician" Type="Int32" />
+          <Property Name="ticketType" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="ticketUser" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="vi_Ticket_Action">
+          <Key>
+            <PropertyRef Name="orderNumber" />
+            <PropertyRef Name="ticket" />
+            <PropertyRef Name="stepTicketType" />
+            <PropertyRef Name="stepOrderNumber" />
+            <PropertyRef Name="technician" />
+          </Key>
+          <Property Name="orderNumber" Type="Int32" Nullable="false" />
+          <Property Name="beginDate" Type="DateTime" Precision="3" />
+          <Property Name="endDate" Type="DateTime" Precision="3" />
+          <Property Name="note" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="ticket" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="stepTicketType" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="stepOrderNumber" Type="Int32" Nullable="false" />
+          <Property Name="technician" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="vi_Ticket_Log">
+          <Key>
+            <PropertyRef Name="orderNumber" />
+            <PropertyRef Name="ticket" />
+          </Key>
+          <Property Name="orderNumber" Type="Int32" Nullable="false" />
+          <Property Name="sqlCommand" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="modificationDate" Type="DateTime" Precision="3" />
+          <Property Name="ticket" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="technician" Type="Int32" />
+        </EntityType>
+        <Association Name="FK__Request__technic__1B33F057">
+          <End Role="Technician" Type="Self.Technician" Multiplicity="0..1" />
+          <End Role="Request" Type="Self.Request" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Technician">
+              <PropertyRef Name="anumber" />
+            </Principal>
+            <Dependent Role="Request">
+              <PropertyRef Name="technician" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Request__ticket__194BA7E5">
+          <End Role="Ticket" Type="Self.Ticket" Multiplicity="1" />
+          <End Role="Request" Type="Self.Request" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ticket">
+              <PropertyRef Name="cod" />
+            </Principal>
+            <Dependent Role="Request">
+              <PropertyRef Name="ticket" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Request__ticketU__1A3FCC1E">
+          <End Role="Ticket_User" Type="Self.Ticket_User" Multiplicity="1" />
+          <End Role="Request" Type="Self.Request" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ticket_User">
+              <PropertyRef Name="email" />
+            </Principal>
+            <Dependent Role="Request">
+              <PropertyRef Name="ticketUser" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Step__ticketType__0DD9F539">
+          <End Role="Ticket_Type" Type="Self.Ticket_Type" Multiplicity="1" />
+          <End Role="Step" Type="Self.Step" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ticket_Type">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Step">
+              <PropertyRef Name="ticketType" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Ticket_Action__11AA861D">
+          <End Role="Step" Type="Self.Step" Multiplicity="1" />
+          <End Role="Ticket_Action" Type="Self.Ticket_Action" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Step">
+              <PropertyRef Name="ticketType" />
+              <PropertyRef Name="orderNumber" />
+            </Principal>
+            <Dependent Role="Ticket_Action">
+              <PropertyRef Name="stepTicketType" />
+              <PropertyRef Name="stepOrderNumber" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Ticket__technici__0638D371">
+          <End Role="Technician" Type="Self.Technician" Multiplicity="0..1" />
+          <End Role="Ticket" Type="Self.Ticket" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Technician">
+              <PropertyRef Name="anumber" />
+            </Principal>
+            <Dependent Role="Ticket">
+              <PropertyRef Name="technician" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Ticket_Ac__techn__129EAA56">
+          <End Role="Technician" Type="Self.Technician" Multiplicity="1" />
+          <End Role="Ticket_Action" Type="Self.Ticket_Action" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Technician">
+              <PropertyRef Name="anumber" />
+            </Principal>
+            <Dependent Role="Ticket_Action">
+              <PropertyRef Name="technician" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Ticket_Lo__techn__166F3B3A">
+          <End Role="Technician" Type="Self.Technician" Multiplicity="0..1" />
+          <End Role="Ticket_Log" Type="Self.Ticket_Log" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Technician">
+              <PropertyRef Name="anumber" />
+            </Principal>
+            <Dependent Role="Ticket_Log">
+              <PropertyRef Name="technician" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Ticket__ticketTy__08211BE3">
+          <End Role="Ticket_Type" Type="Self.Ticket_Type" Multiplicity="0..1" />
+          <End Role="Ticket" Type="Self.Ticket" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ticket_Type">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Ticket">
+              <PropertyRef Name="ticketType" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Ticket__ticketUs__0915401C">
+          <End Role="Ticket_User" Type="Self.Ticket_User" Multiplicity="1" />
+          <End Role="Ticket" Type="Self.Ticket" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ticket_User">
+              <PropertyRef Name="email" />
+            </Principal>
+            <Dependent Role="Ticket">
+              <PropertyRef Name="ticketUser" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Ticket_Ac__ticke__10B661E4">
+          <End Role="Ticket" Type="Self.Ticket" Multiplicity="1" />
+          <End Role="Ticket_Action" Type="Self.Ticket_Action" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ticket">
+              <PropertyRef Name="cod" />
+            </Principal>
+            <Dependent Role="Ticket_Action">
+              <PropertyRef Name="ticket" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Ticket_Lo__ticke__157B1701">
+          <End Role="Ticket" Type="Self.Ticket" Multiplicity="1" />
+          <End Role="Ticket_Log" Type="Self.Ticket_Log" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ticket">
+              <PropertyRef Name="cod" />
+            </Principal>
+            <Dependent Role="Ticket_Log">
+              <PropertyRef Name="ticket" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="TicketsEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Requests" EntityType="Self.Request" />
+          <EntitySet Name="Steps" EntityType="Self.Step" />
+          <EntitySet Name="Technicians" EntityType="Self.Technician" />
+          <EntitySet Name="Tickets" EntityType="Self.Ticket" />
+          <EntitySet Name="Ticket_Action" EntityType="Self.Ticket_Action" />
+          <EntitySet Name="Ticket_Log" EntityType="Self.Ticket_Log" />
+          <EntitySet Name="Ticket_Type" EntityType="Self.Ticket_Type" />
+          <EntitySet Name="Ticket_User" EntityType="Self.Ticket_User" />
+          <EntitySet Name="vi_Request" EntityType="Self.vi_Request" />
+          <EntitySet Name="vi_Ticket" EntityType="Self.vi_Ticket" />
+          <EntitySet Name="vi_Ticket_Action" EntityType="Self.vi_Ticket_Action" />
+          <EntitySet Name="vi_Ticket_Log" EntityType="Self.vi_Ticket_Log" />
+          <AssociationSet Name="FK__Request__technic__1B33F057" Association="Self.FK__Request__technic__1B33F057">
+            <End Role="Technician" EntitySet="Technicians" />
+            <End Role="Request" EntitySet="Requests" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Request__ticket__194BA7E5" Association="Self.FK__Request__ticket__194BA7E5">
+            <End Role="Ticket" EntitySet="Tickets" />
+            <End Role="Request" EntitySet="Requests" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Request__ticketU__1A3FCC1E" Association="Self.FK__Request__ticketU__1A3FCC1E">
+            <End Role="Ticket_User" EntitySet="Ticket_User" />
+            <End Role="Request" EntitySet="Requests" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Step__ticketType__0DD9F539" Association="Self.FK__Step__ticketType__0DD9F539">
+            <End Role="Ticket_Type" EntitySet="Ticket_Type" />
+            <End Role="Step" EntitySet="Steps" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Ticket_Action__11AA861D" Association="Self.FK__Ticket_Action__11AA861D">
+            <End Role="Step" EntitySet="Steps" />
+            <End Role="Ticket_Action" EntitySet="Ticket_Action" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Ticket__technici__0638D371" Association="Self.FK__Ticket__technici__0638D371">
+            <End Role="Technician" EntitySet="Technicians" />
+            <End Role="Ticket" EntitySet="Tickets" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Ticket_Ac__techn__129EAA56" Association="Self.FK__Ticket_Ac__techn__129EAA56">
+            <End Role="Technician" EntitySet="Technicians" />
+            <End Role="Ticket_Action" EntitySet="Ticket_Action" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Ticket_Lo__techn__166F3B3A" Association="Self.FK__Ticket_Lo__techn__166F3B3A">
+            <End Role="Technician" EntitySet="Technicians" />
+            <End Role="Ticket_Log" EntitySet="Ticket_Log" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Ticket__ticketTy__08211BE3" Association="Self.FK__Ticket__ticketTy__08211BE3">
+            <End Role="Ticket_Type" EntitySet="Ticket_Type" />
+            <End Role="Ticket" EntitySet="Tickets" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Ticket__ticketUs__0915401C" Association="Self.FK__Ticket__ticketUs__0915401C">
+            <End Role="Ticket_User" EntitySet="Ticket_User" />
+            <End Role="Ticket" EntitySet="Tickets" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Ticket_Ac__ticke__10B661E4" Association="Self.FK__Ticket_Ac__ticke__10B661E4">
+            <End Role="Ticket" EntitySet="Tickets" />
+            <End Role="Ticket_Action" EntitySet="Ticket_Action" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Ticket_Lo__ticke__157B1701" Association="Self.FK__Ticket_Lo__ticke__157B1701">
+            <End Role="Ticket" EntitySet="Tickets" />
+            <End Role="Ticket_Log" EntitySet="Ticket_Log" />
+          </AssociationSet>
+          <FunctionImport Name="func_Get_Most_Priority_Tickets" IsComposable="true" ReturnType="Collection(TicketsModel.func_Get_Most_Priority_Tickets_Result)">
+          <Parameter Name="n" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="proc_Get_Ticket_Info" ReturnType="Collection(TicketsModel.proc_Get_Ticket_Info_Result)">
+          <Parameter Name="cod" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_Answer_Ticket_Request">
+            <Parameter Name="orderNumber" Mode="In" Type="Int32" />
+            <Parameter Name="ticket" Mode="In" Type="String" />
+            <Parameter Name="technician" Mode="In" Type="Int32" />
+            <Parameter Name="response" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_Assign_Technician_To_Tickets" />
+          <FunctionImport Name="sp_Assign_Type_To_Ticket">
+            <Parameter Name="ticket" Mode="In" Type="String" />
+            <Parameter Name="ticketType" Mode="In" Type="String" />
+            <Parameter Name="technician" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_Close_Ticket">
+            <Parameter Name="ticket" Mode="In" Type="String" />
+            <Parameter Name="technician" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_Delete_Technician">
+          <Parameter Name="email" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_Delete_Ticket">
+          <Parameter Name="cod" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_Delete_Ticket_User">
+          <Parameter Name="email" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_End_Ticket_Action">
+            <Parameter Name="orderNumber" Mode="In" Type="Int32" />
+            <Parameter Name="ticket" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_Increate_Ticket_Priority">
+          <Parameter Name="ticket" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_Insert_Step">
+            <Parameter Name="ticketType" Mode="In" Type="String" />
+            <Parameter Name="description" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_Insert_Technician">
+            <Parameter Name="email" Mode="In" Type="String" />
+            <Parameter Name="name" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_Insert_Ticket" ReturnType="Collection(TicketsModel.sp_Insert_Ticket_Result)">
+            <Parameter Name="cod" Mode="In" Type="String" />
+            <Parameter Name="ticketDescription" Mode="In" Type="String" />
+            <Parameter Name="ticketUser" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_Insert_Ticket_Action">
+            <Parameter Name="ticket" Mode="In" Type="String" />
+            <Parameter Name="technician" Mode="In" Type="Int32" />
+            <Parameter Name="stepTicketType" Mode="In" Type="String" />
+            <Parameter Name="stepOrderNumber" Mode="In" Type="Int32" />
+            <Parameter Name="note" Mode="In" Type="String" />
+            <Parameter Name="orderNumber" Mode="InOut" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_Insert_Ticket_Log">
+            <Parameter Name="ticket" Mode="In" Type="String" />
+            <Parameter Name="sqlCommand" Mode="In" Type="String" />
+            <Parameter Name="technician" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_Insert_Ticket_Type">
+            <Parameter Name="id" Mode="In" Type="String" />
+            <Parameter Name="name" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_Insert_Ticket_User">
+            <Parameter Name="email" Mode="In" Type="String" />
+            <Parameter Name="name" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_List_Ticket_Actions" ReturnType="Collection(TicketsModel.sp_List_Ticket_Actions_Result)">
+          <Parameter Name="ticket" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_List_Ticket_Requests" ReturnType="Collection(TicketsModel.sp_List_Ticket_Requests_Result)">
+          <Parameter Name="ticket" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_List_Tickets_By_Date" ReturnType="Collection(TicketsModel.sp_List_Tickets_By_Date_Result)" />
+          <FunctionImport Name="sp_List_Tickets_By_Priority" ReturnType="Collection(TicketsModel.sp_List_Tickets_By_Priority_Result)" />
+          <FunctionImport Name="sp_List_Tickets_By_State" ReturnType="Collection(TicketsModel.sp_List_Tickets_By_State_Result)" />
+          <FunctionImport Name="sp_List_Tickets_By_Type" ReturnType="Collection(TicketsModel.sp_List_Tickets_By_Type_Result)" />
+          <FunctionImport Name="sp_Request_Ticket_Info">
+            <Parameter Name="ticketUser" Mode="In" Type="String" />
+            <Parameter Name="ticket" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_Update_Technician">
+            <Parameter Name="email" Mode="In" Type="String" />
+            <Parameter Name="name" Mode="In" Type="String" />
+            <Parameter Name="newEmail" Mode="In" Type="String" />
+            <Parameter Name="newName" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_Update_Ticket_Priority">
+            <Parameter Name="ticket" Mode="In" Type="String" />
+            <Parameter Name="technician" Mode="In" Type="Int32" />
+            <Parameter Name="newPriority" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_Update_Ticket_User">
+            <Parameter Name="email" Mode="In" Type="String" />
+            <Parameter Name="name" Mode="In" Type="String" />
+            <Parameter Name="newEmail" Mode="In" Type="String" />
+            <Parameter Name="newName" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="proc_Get_Ticket_Steps" ReturnType="Collection(TicketsModel.proc_Get_Ticket_Steps_Result)">
+          <Parameter Name="cod" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="proc_Assign_Technician">
+            <Parameter Name="tech_num" Mode="In" Type="Int32" />
+            <Parameter Name="cod" Mode="InOut" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="proc_Remove_Ticket">
+            <Parameter Name="cod" Mode="In" Type="String" />
+            <Parameter Name="res" Mode="InOut" Type="Int32" />
+          </FunctionImport>
+        </EntityContainer>
+        <ComplexType Name="proc_Get_Ticket_Info_Result">
+          <Property Type="String" Name="cod" Nullable="false" MaxLength="20" />
+          <Property Type="String" Name="ticketState" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="ticketDescription" Nullable="false" />
+          <Property Type="Int32" Name="anumber" Nullable="false" />
+          <Property Type="String" Name="tech_email" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="tech_name" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="tt_id" Nullable="false" MaxLength="20" />
+          <Property Type="String" Name="tt_name" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="owner_email" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="owner_name" Nullable="true" MaxLength="100" />
+          <Property Type="Int32" Name="owner_id" Nullable="false" />
+          <Property Type="Int32" Name="orderNumber" Nullable="false" />
+          <Property Type="DateTime" Name="beginDate" Nullable="true" Precision="23" />
+          <Property Type="DateTime" Name="endDate" Nullable="true" Precision="23" />
+        </ComplexType>
+        <ComplexType Name="sp_Insert_Ticket_Result">
+          <Property Type="String" Name="email" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="name" Nullable="true" MaxLength="100" />
+          <Property Type="Int32" Name="id" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="sp_List_Ticket_Actions_Result">
+          <Property Type="String" Name="cod" Nullable="false" MaxLength="20" />
+          <Property Type="String" Name="ticketState" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="ticketDescription" Nullable="false" />
+          <Property Type="String" Name="ticketPriority" Nullable="true" MaxLength="20" />
+          <Property Type="DateTime" Name="beginDate" Nullable="true" Precision="23" />
+          <Property Type="String" Name="stepTicketType" Nullable="false" MaxLength="20" />
+          <Property Type="Int32" Name="stepOrderNumber" Nullable="false" />
+          <Property Type="String" Name="note" Nullable="true" MaxLength="100" />
+        </ComplexType>
+        <ComplexType Name="sp_List_Ticket_Requests_Result">
+          <Property Type="String" Name="cod" Nullable="false" MaxLength="20" />
+          <Property Type="String" Name="ticketState" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="ticketDescription" Nullable="false" />
+          <Property Type="String" Name="ticketPriority" Nullable="true" MaxLength="20" />
+          <Property Type="DateTime" Name="requestDate" Nullable="true" Precision="23" />
+          <Property Type="DateTime" Name="responseDate" Nullable="true" Precision="23" />
+          <Property Type="String" Name="response" Nullable="true" />
+          <Property Type="Int32" Name="technician" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="sp_List_Tickets_By_Date_Result">
+          <Property Type="String" Name="cod" Nullable="false" MaxLength="20" />
+          <Property Type="String" Name="ticketState" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="ticketDescription" Nullable="false" />
+          <Property Type="String" Name="ticketPriority" Nullable="true" MaxLength="20" />
+          <Property Type="DateTime" Name="creationDate" Nullable="false" Precision="23" />
+          <Property Type="DateTime" Name="closeDate" Nullable="true" Precision="23" />
+          <Property Type="Boolean" Name="visible" Nullable="true" />
+          <Property Type="Int32" Name="technician" Nullable="true" />
+          <Property Type="String" Name="ticketType" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="ticketUser" Nullable="false" MaxLength="100" />
+        </ComplexType>
+        <ComplexType Name="sp_List_Tickets_By_Priority_Result">
+          <Property Type="String" Name="cod" Nullable="false" MaxLength="20" />
+          <Property Type="String" Name="ticketState" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="ticketDescription" Nullable="false" />
+          <Property Type="String" Name="ticketPriority" Nullable="true" MaxLength="20" />
+          <Property Type="DateTime" Name="creationDate" Nullable="false" Precision="23" />
+          <Property Type="DateTime" Name="closeDate" Nullable="true" Precision="23" />
+          <Property Type="Boolean" Name="visible" Nullable="true" />
+          <Property Type="Int32" Name="technician" Nullable="true" />
+          <Property Type="String" Name="ticketType" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="ticketUser" Nullable="false" MaxLength="100" />
+        </ComplexType>
+        <ComplexType Name="sp_List_Tickets_By_State_Result">
+          <Property Type="String" Name="cod" Nullable="false" MaxLength="20" />
+          <Property Type="String" Name="ticketState" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="ticketDescription" Nullable="false" />
+          <Property Type="String" Name="ticketPriority" Nullable="true" MaxLength="20" />
+          <Property Type="DateTime" Name="creationDate" Nullable="false" Precision="23" />
+          <Property Type="DateTime" Name="closeDate" Nullable="true" Precision="23" />
+          <Property Type="Boolean" Name="visible" Nullable="true" />
+          <Property Type="Int32" Name="technician" Nullable="true" />
+          <Property Type="String" Name="ticketType" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="ticketUser" Nullable="false" MaxLength="100" />
+        </ComplexType>
+        <ComplexType Name="sp_List_Tickets_By_Type_Result">
+          <Property Type="String" Name="cod" Nullable="false" MaxLength="20" />
+          <Property Type="String" Name="ticketState" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="ticketDescription" Nullable="false" />
+          <Property Type="String" Name="ticketPriority" Nullable="true" MaxLength="20" />
+          <Property Type="DateTime" Name="creationDate" Nullable="false" Precision="23" />
+          <Property Type="DateTime" Name="closeDate" Nullable="true" Precision="23" />
+          <Property Type="Boolean" Name="visible" Nullable="true" />
+          <Property Type="Int32" Name="technician" Nullable="true" />
+          <Property Type="String" Name="ticketType" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="ticketUser" Nullable="false" MaxLength="100" />
+        </ComplexType>
+        <ComplexType Name="proc_Get_Ticket_Steps_Result">
+          <Property Type="Int32" Name="orderNumber" Nullable="false" />
+          <Property Type="String" Name="description" Nullable="true" MaxLength="100" />
+          <Property Type="Int32" Name="technician" Nullable="true" />
+          <Property Type="String" Name="ticketState" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="ticketType" Nullable="false" MaxLength="20" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="TicketsModelStoreContainer" CdmEntityContainer="TicketsEntities">
+          <EntitySetMapping Name="Requests">
+            <EntityTypeMapping TypeName="TicketsModel.Request">
+              <MappingFragment StoreEntitySet="Request">
+                <ScalarProperty Name="orderNumber" ColumnName="orderNumber" />
+                <ScalarProperty Name="requestDate" ColumnName="requestDate" />
+                <ScalarProperty Name="responseDate" ColumnName="responseDate" />
+                <ScalarProperty Name="response" ColumnName="response" />
+                <ScalarProperty Name="ticket" ColumnName="ticket" />
+                <ScalarProperty Name="ticketUser" ColumnName="ticketUser" />
+                <ScalarProperty Name="technician" ColumnName="technician" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Steps">
+            <EntityTypeMapping TypeName="TicketsModel.Step">
+              <MappingFragment StoreEntitySet="Step">
+                <ScalarProperty Name="orderNumber" ColumnName="orderNumber" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="ticketType" ColumnName="ticketType" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Technicians">
+            <EntityTypeMapping TypeName="TicketsModel.Technician">
+              <MappingFragment StoreEntitySet="Technician">
+                <ScalarProperty Name="anumber" ColumnName="anumber" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tickets">
+            <EntityTypeMapping TypeName="TicketsModel.Ticket">
+              <MappingFragment StoreEntitySet="Ticket">
+                <ScalarProperty Name="cod" ColumnName="cod" />
+                <ScalarProperty Name="ticketState" ColumnName="ticketState" />
+                <ScalarProperty Name="ticketDescription" ColumnName="ticketDescription" />
+                <ScalarProperty Name="ticketPriority" ColumnName="ticketPriority" />
+                <ScalarProperty Name="creationDate" ColumnName="creationDate" />
+                <ScalarProperty Name="closeDate" ColumnName="closeDate" />
+                <ScalarProperty Name="visible" ColumnName="visible" />
+                <ScalarProperty Name="technician" ColumnName="technician" />
+                <ScalarProperty Name="ticketType" ColumnName="ticketType" />
+                <ScalarProperty Name="ticketUser" ColumnName="ticketUser" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Ticket_Action">
+            <EntityTypeMapping TypeName="TicketsModel.Ticket_Action">
+              <MappingFragment StoreEntitySet="Ticket_Action">
+                <ScalarProperty Name="orderNumber" ColumnName="orderNumber" />
+                <ScalarProperty Name="beginDate" ColumnName="beginDate" />
+                <ScalarProperty Name="endDate" ColumnName="endDate" />
+                <ScalarProperty Name="note" ColumnName="note" />
+                <ScalarProperty Name="ticket" ColumnName="ticket" />
+                <ScalarProperty Name="stepTicketType" ColumnName="stepTicketType" />
+                <ScalarProperty Name="stepOrderNumber" ColumnName="stepOrderNumber" />
+                <ScalarProperty Name="technician" ColumnName="technician" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Ticket_Log">
+            <EntityTypeMapping TypeName="TicketsModel.Ticket_Log">
+              <MappingFragment StoreEntitySet="Ticket_Log">
+                <ScalarProperty Name="orderNumber" ColumnName="orderNumber" />
+                <ScalarProperty Name="sqlCommand" ColumnName="sqlCommand" />
+                <ScalarProperty Name="modificationDate" ColumnName="modificationDate" />
+                <ScalarProperty Name="ticket" ColumnName="ticket" />
+                <ScalarProperty Name="technician" ColumnName="technician" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Ticket_Type">
+            <EntityTypeMapping TypeName="TicketsModel.Ticket_Type">
+              <MappingFragment StoreEntitySet="Ticket_Type">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Ticket_User">
+            <EntityTypeMapping TypeName="TicketsModel.Ticket_User">
+              <MappingFragment StoreEntitySet="Ticket_User">
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="vi_Request">
+            <EntityTypeMapping TypeName="TicketsModel.vi_Request">
+              <MappingFragment StoreEntitySet="vi_Request">
+                <ScalarProperty Name="orderNumber" ColumnName="orderNumber" />
+                <ScalarProperty Name="requestDate" ColumnName="requestDate" />
+                <ScalarProperty Name="responseDate" ColumnName="responseDate" />
+                <ScalarProperty Name="response" ColumnName="response" />
+                <ScalarProperty Name="ticket" ColumnName="ticket" />
+                <ScalarProperty Name="ticketUser" ColumnName="ticketUser" />
+                <ScalarProperty Name="technician" ColumnName="technician" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="vi_Ticket">
+            <EntityTypeMapping TypeName="TicketsModel.vi_Ticket">
+              <MappingFragment StoreEntitySet="vi_Ticket">
+                <ScalarProperty Name="cod" ColumnName="cod" />
+                <ScalarProperty Name="ticketState" ColumnName="ticketState" />
+                <ScalarProperty Name="ticketDescription" ColumnName="ticketDescription" />
+                <ScalarProperty Name="ticketPriority" ColumnName="ticketPriority" />
+                <ScalarProperty Name="creationDate" ColumnName="creationDate" />
+                <ScalarProperty Name="closeDate" ColumnName="closeDate" />
+                <ScalarProperty Name="visible" ColumnName="visible" />
+                <ScalarProperty Name="technician" ColumnName="technician" />
+                <ScalarProperty Name="ticketType" ColumnName="ticketType" />
+                <ScalarProperty Name="ticketUser" ColumnName="ticketUser" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="vi_Ticket_Action">
+            <EntityTypeMapping TypeName="TicketsModel.vi_Ticket_Action">
+              <MappingFragment StoreEntitySet="vi_Ticket_Action">
+                <ScalarProperty Name="orderNumber" ColumnName="orderNumber" />
+                <ScalarProperty Name="beginDate" ColumnName="beginDate" />
+                <ScalarProperty Name="endDate" ColumnName="endDate" />
+                <ScalarProperty Name="note" ColumnName="note" />
+                <ScalarProperty Name="ticket" ColumnName="ticket" />
+                <ScalarProperty Name="stepTicketType" ColumnName="stepTicketType" />
+                <ScalarProperty Name="stepOrderNumber" ColumnName="stepOrderNumber" />
+                <ScalarProperty Name="technician" ColumnName="technician" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="vi_Ticket_Log">
+            <EntityTypeMapping TypeName="TicketsModel.vi_Ticket_Log">
+              <MappingFragment StoreEntitySet="vi_Ticket_Log">
+                <ScalarProperty Name="orderNumber" ColumnName="orderNumber" />
+                <ScalarProperty Name="sqlCommand" ColumnName="sqlCommand" />
+                <ScalarProperty Name="modificationDate" ColumnName="modificationDate" />
+                <ScalarProperty Name="ticket" ColumnName="ticket" />
+                <ScalarProperty Name="technician" ColumnName="technician" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionName="TicketsModel.Store.func_Get_Most_Priority_Tickets" FunctionImportName="func_Get_Most_Priority_Tickets">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="TicketsModel.func_Get_Most_Priority_Tickets_Result">
+                <ScalarProperty Name="cod" ColumnName="cod" />
+                <ScalarProperty Name="ticketState" ColumnName="ticketState" />
+                <ScalarProperty Name="ticketDescription" ColumnName="ticketDescription" />
+                <ScalarProperty Name="ticketPriority" ColumnName="ticketPriority" />
+                <ScalarProperty Name="creationDate" ColumnName="creationDate" />
+                <ScalarProperty Name="closeDate" ColumnName="closeDate" />
+                <ScalarProperty Name="visible" ColumnName="visible" />
+                <ScalarProperty Name="technician" ColumnName="technician" />
+                <ScalarProperty Name="ticketType" ColumnName="ticketType" />
+                <ScalarProperty Name="ticketUser" ColumnName="ticketUser" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="proc_Get_Ticket_Info" FunctionName="TicketsModel.Store.proc_Get_Ticket_Info">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="TicketsModel.proc_Get_Ticket_Info_Result">
+                <ScalarProperty Name="cod" ColumnName="cod" />
+                <ScalarProperty Name="ticketState" ColumnName="ticketState" />
+                <ScalarProperty Name="ticketDescription" ColumnName="ticketDescription" />
+                <ScalarProperty Name="anumber" ColumnName="anumber" />
+                <ScalarProperty Name="tech_email" ColumnName="tech_email" />
+                <ScalarProperty Name="tech_name" ColumnName="tech_name" />
+                <ScalarProperty Name="tt_id" ColumnName="tt_id" />
+                <ScalarProperty Name="tt_name" ColumnName="tt_name" />
+                <ScalarProperty Name="owner_email" ColumnName="owner_email" />
+                <ScalarProperty Name="owner_name" ColumnName="owner_name" />
+                <ScalarProperty Name="owner_id" ColumnName="owner_id" />
+                <ScalarProperty Name="orderNumber" ColumnName="orderNumber" />
+                <ScalarProperty Name="beginDate" ColumnName="beginDate" />
+                <ScalarProperty Name="endDate" ColumnName="endDate" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_Answer_Ticket_Request" FunctionName="TicketsModel.Store.sp_Answer_Ticket_Request" />
+          <FunctionImportMapping FunctionImportName="sp_Assign_Technician_To_Tickets" FunctionName="TicketsModel.Store.sp_Assign_Technician_To_Tickets" />
+          <FunctionImportMapping FunctionImportName="sp_Assign_Type_To_Ticket" FunctionName="TicketsModel.Store.sp_Assign_Type_To_Ticket" />
+          <FunctionImportMapping FunctionImportName="sp_Close_Ticket" FunctionName="TicketsModel.Store.sp_Close_Ticket" />
+          <FunctionImportMapping FunctionImportName="sp_Delete_Technician" FunctionName="TicketsModel.Store.sp_Delete_Technician" />
+          <FunctionImportMapping FunctionImportName="sp_Delete_Ticket" FunctionName="TicketsModel.Store.sp_Delete_Ticket" />
+          <FunctionImportMapping FunctionImportName="sp_Delete_Ticket_User" FunctionName="TicketsModel.Store.sp_Delete_Ticket_User" />
+          <FunctionImportMapping FunctionImportName="sp_End_Ticket_Action" FunctionName="TicketsModel.Store.sp_End_Ticket_Action" />
+          <FunctionImportMapping FunctionImportName="sp_Increate_Ticket_Priority" FunctionName="TicketsModel.Store.sp_Increate_Ticket_Priority" />
+          <FunctionImportMapping FunctionImportName="sp_Insert_Step" FunctionName="TicketsModel.Store.sp_Insert_Step" />
+          <FunctionImportMapping FunctionImportName="sp_Insert_Technician" FunctionName="TicketsModel.Store.sp_Insert_Technician" />
+          <FunctionImportMapping FunctionImportName="sp_Insert_Ticket" FunctionName="TicketsModel.Store.sp_Insert_Ticket">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="TicketsModel.sp_Insert_Ticket_Result">
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_Insert_Ticket_Action" FunctionName="TicketsModel.Store.sp_Insert_Ticket_Action" />
+          <FunctionImportMapping FunctionImportName="sp_Insert_Ticket_Log" FunctionName="TicketsModel.Store.sp_Insert_Ticket_Log" />
+          <FunctionImportMapping FunctionImportName="sp_Insert_Ticket_Type" FunctionName="TicketsModel.Store.sp_Insert_Ticket_Type" />
+          <FunctionImportMapping FunctionImportName="sp_Insert_Ticket_User" FunctionName="TicketsModel.Store.sp_Insert_Ticket_User" />
+          <FunctionImportMapping FunctionImportName="sp_List_Ticket_Actions" FunctionName="TicketsModel.Store.sp_List_Ticket_Actions">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="TicketsModel.sp_List_Ticket_Actions_Result">
+                <ScalarProperty Name="cod" ColumnName="cod" />
+                <ScalarProperty Name="ticketState" ColumnName="ticketState" />
+                <ScalarProperty Name="ticketDescription" ColumnName="ticketDescription" />
+                <ScalarProperty Name="ticketPriority" ColumnName="ticketPriority" />
+                <ScalarProperty Name="beginDate" ColumnName="beginDate" />
+                <ScalarProperty Name="stepTicketType" ColumnName="stepTicketType" />
+                <ScalarProperty Name="stepOrderNumber" ColumnName="stepOrderNumber" />
+                <ScalarProperty Name="note" ColumnName="note" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_List_Ticket_Requests" FunctionName="TicketsModel.Store.sp_List_Ticket_Requests">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="TicketsModel.sp_List_Ticket_Requests_Result">
+                <ScalarProperty Name="cod" ColumnName="cod" />
+                <ScalarProperty Name="ticketState" ColumnName="ticketState" />
+                <ScalarProperty Name="ticketDescription" ColumnName="ticketDescription" />
+                <ScalarProperty Name="ticketPriority" ColumnName="ticketPriority" />
+                <ScalarProperty Name="requestDate" ColumnName="requestDate" />
+                <ScalarProperty Name="responseDate" ColumnName="responseDate" />
+                <ScalarProperty Name="response" ColumnName="response" />
+                <ScalarProperty Name="technician" ColumnName="technician" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_List_Tickets_By_Date" FunctionName="TicketsModel.Store.sp_List_Tickets_By_Date">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="TicketsModel.sp_List_Tickets_By_Date_Result">
+                <ScalarProperty Name="cod" ColumnName="cod" />
+                <ScalarProperty Name="ticketState" ColumnName="ticketState" />
+                <ScalarProperty Name="ticketDescription" ColumnName="ticketDescription" />
+                <ScalarProperty Name="ticketPriority" ColumnName="ticketPriority" />
+                <ScalarProperty Name="creationDate" ColumnName="creationDate" />
+                <ScalarProperty Name="closeDate" ColumnName="closeDate" />
+                <ScalarProperty Name="visible" ColumnName="visible" />
+                <ScalarProperty Name="technician" ColumnName="technician" />
+                <ScalarProperty Name="ticketType" ColumnName="ticketType" />
+                <ScalarProperty Name="ticketUser" ColumnName="ticketUser" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_List_Tickets_By_Priority" FunctionName="TicketsModel.Store.sp_List_Tickets_By_Priority">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="TicketsModel.sp_List_Tickets_By_Priority_Result">
+                <ScalarProperty Name="cod" ColumnName="cod" />
+                <ScalarProperty Name="ticketState" ColumnName="ticketState" />
+                <ScalarProperty Name="ticketDescription" ColumnName="ticketDescription" />
+                <ScalarProperty Name="ticketPriority" ColumnName="ticketPriority" />
+                <ScalarProperty Name="creationDate" ColumnName="creationDate" />
+                <ScalarProperty Name="closeDate" ColumnName="closeDate" />
+                <ScalarProperty Name="visible" ColumnName="visible" />
+                <ScalarProperty Name="technician" ColumnName="technician" />
+                <ScalarProperty Name="ticketType" ColumnName="ticketType" />
+                <ScalarProperty Name="ticketUser" ColumnName="ticketUser" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_List_Tickets_By_State" FunctionName="TicketsModel.Store.sp_List_Tickets_By_State">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="TicketsModel.sp_List_Tickets_By_State_Result">
+                <ScalarProperty Name="cod" ColumnName="cod" />
+                <ScalarProperty Name="ticketState" ColumnName="ticketState" />
+                <ScalarProperty Name="ticketDescription" ColumnName="ticketDescription" />
+                <ScalarProperty Name="ticketPriority" ColumnName="ticketPriority" />
+                <ScalarProperty Name="creationDate" ColumnName="creationDate" />
+                <ScalarProperty Name="closeDate" ColumnName="closeDate" />
+                <ScalarProperty Name="visible" ColumnName="visible" />
+                <ScalarProperty Name="technician" ColumnName="technician" />
+                <ScalarProperty Name="ticketType" ColumnName="ticketType" />
+                <ScalarProperty Name="ticketUser" ColumnName="ticketUser" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_List_Tickets_By_Type" FunctionName="TicketsModel.Store.sp_List_Tickets_By_Type">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="TicketsModel.sp_List_Tickets_By_Type_Result">
+                <ScalarProperty Name="cod" ColumnName="cod" />
+                <ScalarProperty Name="ticketState" ColumnName="ticketState" />
+                <ScalarProperty Name="ticketDescription" ColumnName="ticketDescription" />
+                <ScalarProperty Name="ticketPriority" ColumnName="ticketPriority" />
+                <ScalarProperty Name="creationDate" ColumnName="creationDate" />
+                <ScalarProperty Name="closeDate" ColumnName="closeDate" />
+                <ScalarProperty Name="visible" ColumnName="visible" />
+                <ScalarProperty Name="technician" ColumnName="technician" />
+                <ScalarProperty Name="ticketType" ColumnName="ticketType" />
+                <ScalarProperty Name="ticketUser" ColumnName="ticketUser" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_Request_Ticket_Info" FunctionName="TicketsModel.Store.sp_Request_Ticket_Info" />
+          <FunctionImportMapping FunctionImportName="sp_Update_Technician" FunctionName="TicketsModel.Store.sp_Update_Technician" />
+          <FunctionImportMapping FunctionImportName="sp_Update_Ticket_Priority" FunctionName="TicketsModel.Store.sp_Update_Ticket_Priority" />
+          <FunctionImportMapping FunctionImportName="sp_Update_Ticket_User" FunctionName="TicketsModel.Store.sp_Update_Ticket_User" />
+          <FunctionImportMapping FunctionImportName="proc_Get_Ticket_Steps" FunctionName="TicketsModel.Store.proc_Get_Ticket_Steps">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="TicketsModel.proc_Get_Ticket_Steps_Result">
+                <ScalarProperty Name="orderNumber" ColumnName="orderNumber" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="technician" ColumnName="technician" />
+                <ScalarProperty Name="ticketState" ColumnName="ticketState" />
+                <ScalarProperty Name="ticketType" ColumnName="ticketType" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="proc_Assign_Technician" FunctionName="TicketsModel.Store.proc_Assign_Technician" />
+          <FunctionImportMapping FunctionImportName="proc_Remove_Ticket" FunctionName="TicketsModel.Store.proc_Remove_Ticket" />
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

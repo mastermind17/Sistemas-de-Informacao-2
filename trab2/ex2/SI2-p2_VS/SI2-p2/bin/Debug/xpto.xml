@@ -1,0 +1,13 @@
+<?xml version="1.0" standalone="yes"?>
+<Ticket_Info xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <ticket type="LF1010" ticketId="ccc" status="Closed">
+    <description>...</description>
+    <owner ownerId="uEmail3" name="tyson" email="3">uEmail3</owner>
+    <supervisor technicianID="3" name="falcao" email="aEmail3">3</supervisor>
+    <type_type typeId="LF1010" name="Login Failed">LF1010</type_type>
+  </ticket>
+  <actions>
+    <action orderNum="1" beginDate="24/02/2016 15:06:45" endDate="24/02/2016 15:06:47">1</action>
+    <action orderNum="2" beginDate="24/02/2016 15:07:11" endDate="24/02/2016 15:07:12">2</action>
+  </actions>
+</Ticket_Info>

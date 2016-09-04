@@ -1,0 +1,548 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="TicketsModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Request">
+    <Key>
+      <PropertyRef Name="orderNumber" />
+      <PropertyRef Name="ticket" />
+    </Key>
+    <Property Name="orderNumber" Type="int" Nullable="false" />
+    <Property Name="requestDate" Type="datetime" />
+    <Property Name="responseDate" Type="datetime" />
+    <Property Name="response" Type="varchar(max)" />
+    <Property Name="ticket" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="ticketUser" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="technician" Type="int" />
+  </EntityType>
+  <EntityType Name="Step">
+    <Key>
+      <PropertyRef Name="orderNumber" />
+      <PropertyRef Name="ticketType" />
+    </Key>
+    <Property Name="orderNumber" Type="int" Nullable="false" />
+    <Property Name="description" Type="varchar" MaxLength="100" />
+    <Property Name="ticketType" Type="varchar" MaxLength="20" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Technician">
+    <Key>
+      <PropertyRef Name="anumber" />
+    </Key>
+    <Property Name="anumber" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="email" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="name" Type="varchar" MaxLength="100" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Ticket">
+    <Key>
+      <PropertyRef Name="cod" />
+    </Key>
+    <Property Name="cod" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="ticketState" Type="varchar" MaxLength="20" />
+    <Property Name="ticketDescription" Type="varchar(max)" Nullable="false" />
+    <Property Name="ticketPriority" Type="varchar" MaxLength="20" />
+    <Property Name="creationDate" Type="datetime" Nullable="false" />
+    <Property Name="closeDate" Type="datetime" />
+    <Property Name="visible" Type="bit" />
+    <Property Name="technician" Type="int" />
+    <Property Name="ticketType" Type="varchar" MaxLength="20" />
+    <Property Name="ticketUser" Type="varchar" MaxLength="100" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Ticket_Action">
+    <Key>
+      <PropertyRef Name="orderNumber" />
+      <PropertyRef Name="ticket" />
+    </Key>
+    <Property Name="orderNumber" Type="int" Nullable="false" />
+    <Property Name="beginDate" Type="datetime" />
+    <Property Name="endDate" Type="datetime" />
+    <Property Name="note" Type="varchar" MaxLength="100" />
+    <Property Name="ticket" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="stepTicketType" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="stepOrderNumber" Type="int" Nullable="false" />
+    <Property Name="technician" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Ticket_Log">
+    <Key>
+      <PropertyRef Name="orderNumber" />
+      <PropertyRef Name="ticket" />
+    </Key>
+    <Property Name="orderNumber" Type="int" Nullable="false" />
+    <Property Name="sqlCommand" Type="varchar(max)" />
+    <Property Name="modificationDate" Type="datetime" />
+    <Property Name="ticket" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="technician" Type="int" />
+  </EntityType>
+  <EntityType Name="Ticket_Type">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="name" Type="varchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="Ticket_User">
+    <Key>
+      <PropertyRef Name="email" />
+    </Key>
+    <Property Name="email" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="name" Type="varchar" MaxLength="100" />
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'Tickets.dbo.vi_Request' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="vi_Request">
+    <Key>
+      <PropertyRef Name="orderNumber" />
+      <PropertyRef Name="ticket" />
+      <PropertyRef Name="ticketUser" />
+    </Key>
+    <Property Name="orderNumber" Type="int" Nullable="false" />
+    <Property Name="requestDate" Type="datetime" />
+    <Property Name="responseDate" Type="datetime" />
+    <Property Name="response" Type="varchar(max)" />
+    <Property Name="ticket" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="ticketUser" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="technician" Type="int" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'Tickets.dbo.vi_Ticket' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="vi_Ticket">
+    <Key>
+      <PropertyRef Name="cod" />
+      <PropertyRef Name="ticketDescription" />
+      <PropertyRef Name="creationDate" />
+      <PropertyRef Name="ticketUser" />
+    </Key>
+    <Property Name="cod" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="ticketState" Type="varchar" MaxLength="20" />
+    <Property Name="ticketDescription" Type="varchar(max)" Nullable="false" />
+    <Property Name="ticketPriority" Type="varchar" MaxLength="20" />
+    <Property Name="creationDate" Type="datetime" Nullable="false" />
+    <Property Name="closeDate" Type="datetime" />
+    <Property Name="visible" Type="bit" />
+    <Property Name="technician" Type="int" />
+    <Property Name="ticketType" Type="varchar" MaxLength="20" />
+    <Property Name="ticketUser" Type="varchar" MaxLength="100" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'Tickets.dbo.vi_Ticket_Action' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="vi_Ticket_Action">
+    <Key>
+      <PropertyRef Name="orderNumber" />
+      <PropertyRef Name="ticket" />
+      <PropertyRef Name="stepTicketType" />
+      <PropertyRef Name="stepOrderNumber" />
+      <PropertyRef Name="technician" />
+    </Key>
+    <Property Name="orderNumber" Type="int" Nullable="false" />
+    <Property Name="beginDate" Type="datetime" />
+    <Property Name="endDate" Type="datetime" />
+    <Property Name="note" Type="varchar" MaxLength="100" />
+    <Property Name="ticket" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="stepTicketType" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="stepOrderNumber" Type="int" Nullable="false" />
+    <Property Name="technician" Type="int" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'Tickets.dbo.vi_Ticket_Log' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="vi_Ticket_Log">
+    <Key>
+      <PropertyRef Name="orderNumber" />
+      <PropertyRef Name="ticket" />
+    </Key>
+    <Property Name="orderNumber" Type="int" Nullable="false" />
+    <Property Name="sqlCommand" Type="varchar(max)" />
+    <Property Name="modificationDate" Type="datetime" />
+    <Property Name="ticket" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="technician" Type="int" />
+  </EntityType>
+  <Association Name="FK__Request__technic__257C74A0">
+    <End Role="Technician" Type="Self.Technician" Multiplicity="0..1" />
+    <End Role="Request" Type="Self.Request" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Technician">
+        <PropertyRef Name="anumber" />
+      </Principal>
+      <Dependent Role="Request">
+        <PropertyRef Name="technician" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Request__ticket__23942C2E">
+    <End Role="Ticket" Type="Self.Ticket" Multiplicity="1" />
+    <End Role="Request" Type="Self.Request" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Ticket">
+        <PropertyRef Name="cod" />
+      </Principal>
+      <Dependent Role="Request">
+        <PropertyRef Name="ticket" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Request__ticketU__24885067">
+    <End Role="Ticket_User" Type="Self.Ticket_User" Multiplicity="1" />
+    <End Role="Request" Type="Self.Request" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Ticket_User">
+        <PropertyRef Name="email" />
+      </Principal>
+      <Dependent Role="Request">
+        <PropertyRef Name="ticketUser" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Step__ticketType__18227982">
+    <End Role="Ticket_Type" Type="Self.Ticket_Type" Multiplicity="1" />
+    <End Role="Step" Type="Self.Step" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Ticket_Type">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Step">
+        <PropertyRef Name="ticketType" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Ticket__technici__108157BA">
+    <End Role="Technician" Type="Self.Technician" Multiplicity="0..1" />
+    <End Role="Ticket" Type="Self.Ticket" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Technician">
+        <PropertyRef Name="anumber" />
+      </Principal>
+      <Dependent Role="Ticket">
+        <PropertyRef Name="technician" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Ticket__ticketTy__1269A02C">
+    <End Role="Ticket_Type" Type="Self.Ticket_Type" Multiplicity="0..1" />
+    <End Role="Ticket" Type="Self.Ticket" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Ticket_Type">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Ticket">
+        <PropertyRef Name="ticketType" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Ticket__ticketUs__135DC465">
+    <End Role="Ticket_User" Type="Self.Ticket_User" Multiplicity="1" />
+    <End Role="Ticket" Type="Self.Ticket" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Ticket_User">
+        <PropertyRef Name="email" />
+      </Principal>
+      <Dependent Role="Ticket">
+        <PropertyRef Name="ticketUser" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Ticket_Ac__techn__1CE72E9F">
+    <End Role="Technician" Type="Self.Technician" Multiplicity="1" />
+    <End Role="Ticket_Action" Type="Self.Ticket_Action" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Technician">
+        <PropertyRef Name="anumber" />
+      </Principal>
+      <Dependent Role="Ticket_Action">
+        <PropertyRef Name="technician" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Ticket_Ac__ticke__1AFEE62D">
+    <End Role="Ticket" Type="Self.Ticket" Multiplicity="1" />
+    <End Role="Ticket_Action" Type="Self.Ticket_Action" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Ticket">
+        <PropertyRef Name="cod" />
+      </Principal>
+      <Dependent Role="Ticket_Action">
+        <PropertyRef Name="ticket" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Ticket_Action__1BF30A66">
+    <End Role="Step" Type="Self.Step" Multiplicity="1" />
+    <End Role="Ticket_Action" Type="Self.Ticket_Action" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Step">
+        <PropertyRef Name="ticketType" />
+        <PropertyRef Name="orderNumber" />
+      </Principal>
+      <Dependent Role="Ticket_Action">
+        <PropertyRef Name="stepTicketType" />
+        <PropertyRef Name="stepOrderNumber" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Ticket_Lo__techn__20B7BF83">
+    <End Role="Technician" Type="Self.Technician" Multiplicity="0..1" />
+    <End Role="Ticket_Log" Type="Self.Ticket_Log" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Technician">
+        <PropertyRef Name="anumber" />
+      </Principal>
+      <Dependent Role="Ticket_Log">
+        <PropertyRef Name="technician" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Ticket_Lo__ticke__1FC39B4A">
+    <End Role="Ticket" Type="Self.Ticket" Multiplicity="1" />
+    <End Role="Ticket_Log" Type="Self.Ticket_Log" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Ticket">
+        <PropertyRef Name="cod" />
+      </Principal>
+      <Dependent Role="Ticket_Log">
+        <PropertyRef Name="ticket" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Function Name="func_Calculate_Response_Time" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="varchar">
+    <Parameter Name="requestDate" Type="datetime" Mode="In" />
+    <Parameter Name="ticket" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="func_Check_Priority" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="bit">
+    <Parameter Name="priority" Type="varchar" Mode="In" />
+    <Parameter Name="newPriority" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="func_Get_Most_Priority_Tickets" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="n" Type="int" Mode="In" />
+    <ReturnType>
+      <CollectionType>
+        <RowType>
+          <Property Name="cod" Type="varchar" MaxLength="20" />
+          <Property Name="ticketState" Type="varchar" MaxLength="20" />
+          <Property Name="ticketDescription" Type="varchar(max)" />
+          <Property Name="ticketPriority" Type="varchar" MaxLength="20" />
+          <Property Name="creationDate" Type="datetime" />
+          <Property Name="closeDate" Type="datetime" />
+          <Property Name="visible" Type="bit" />
+          <Property Name="technician" Type="int" />
+          <Property Name="ticketType" Type="varchar" MaxLength="20" />
+          <Property Name="ticketUser" Type="varchar" MaxLength="100" />
+        </RowType>
+      </CollectionType>
+    </ReturnType>
+  </Function>
+  <Function Name="func_Increase_Priority" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="varchar">
+    <Parameter Name="ticket" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="func_Select_Technician_With_Least_Tickets" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
+  <Function Name="proc_Assign_Technician" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="tech_num" Type="int" Mode="In" />
+    <Parameter Name="cod" Type="varchar" Mode="InOut" />
+  </Function>
+  <Function Name="proc_Get_Ticket_Info" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="cod" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="proc_Get_Ticket_Steps" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="cod" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="proc_Remove_Ticket" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="cod" Type="varchar" Mode="In" />
+    <Parameter Name="res" Type="int" Mode="InOut" />
+  </Function>
+  <Function Name="sp_Answer_Ticket_Request" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="orderNumber" Type="int" Mode="In" />
+    <Parameter Name="ticket" Type="varchar" Mode="In" />
+    <Parameter Name="technician" Type="int" Mode="In" />
+    <Parameter Name="response" Type="varchar(max)" Mode="In" />
+  </Function>
+  <Function Name="sp_Assign_Technician_To_Tickets" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="sp_Assign_Type_To_Ticket" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="ticket" Type="varchar" Mode="In" />
+    <Parameter Name="ticketType" Type="varchar" Mode="In" />
+    <Parameter Name="technician" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_Close_Ticket" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="ticket" Type="varchar" Mode="In" />
+    <Parameter Name="technician" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_Delete_Technician" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="email" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="sp_Delete_Ticket" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="cod" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="sp_Delete_Ticket_User" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="email" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="sp_End_Ticket_Action" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="orderNumber" Type="int" Mode="In" />
+    <Parameter Name="ticket" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="sp_Increate_Ticket_Priority" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="ticket" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="sp_Insert_Step" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="ticketType" Type="varchar" Mode="In" />
+    <Parameter Name="description" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="sp_Insert_Technician" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="email" Type="varchar" Mode="In" />
+    <Parameter Name="name" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="sp_Insert_Ticket" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="cod" Type="varchar" Mode="In" />
+    <Parameter Name="ticketDescription" Type="varchar(max)" Mode="In" />
+    <Parameter Name="ticketUser" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="sp_Insert_Ticket_Action" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="ticket" Type="varchar" Mode="In" />
+    <Parameter Name="technician" Type="int" Mode="In" />
+    <Parameter Name="stepTicketType" Type="varchar" Mode="In" />
+    <Parameter Name="stepOrderNumber" Type="int" Mode="In" />
+    <Parameter Name="note" Type="varchar" Mode="In" />
+    <Parameter Name="orderNumber" Type="int" Mode="InOut" />
+  </Function>
+  <Function Name="sp_Insert_Ticket_Log" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="ticket" Type="varchar" Mode="In" />
+    <Parameter Name="sqlCommand" Type="varchar(max)" Mode="In" />
+    <Parameter Name="technician" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_Insert_Ticket_Type" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="id" Type="varchar" Mode="In" />
+    <Parameter Name="name" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="sp_Insert_Ticket_User" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="email" Type="varchar" Mode="In" />
+    <Parameter Name="name" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="sp_List_Ticket_Actions" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="ticket" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="sp_List_Ticket_Requests" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="ticket" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="sp_List_Tickets_By_Date" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="sp_List_Tickets_By_Priority" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="sp_List_Tickets_By_State" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="sp_List_Tickets_By_Type" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="sp_Request_Ticket_Info" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="ticketUser" Type="varchar" Mode="In" />
+    <Parameter Name="ticket" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="sp_Update_Technician" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="email" Type="varchar" Mode="In" />
+    <Parameter Name="name" Type="varchar" Mode="In" />
+    <Parameter Name="newEmail" Type="varchar" Mode="In" />
+    <Parameter Name="newName" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="sp_Update_Ticket_Priority" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="ticket" Type="varchar" Mode="In" />
+    <Parameter Name="technician" Type="int" Mode="In" />
+    <Parameter Name="newPriority" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="sp_Update_Ticket_User" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="email" Type="varchar" Mode="In" />
+    <Parameter Name="name" Type="varchar" Mode="In" />
+    <Parameter Name="newEmail" Type="varchar" Mode="In" />
+    <Parameter Name="newName" Type="varchar" Mode="In" />
+  </Function>
+  <EntityContainer Name="TicketsModelStoreContainer">
+    <EntitySet Name="Request" EntityType="Self.Request" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Step" EntityType="Self.Step" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Technician" EntityType="Self.Technician" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Ticket" EntityType="Self.Ticket" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Ticket_Action" EntityType="Self.Ticket_Action" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Ticket_Log" EntityType="Self.Ticket_Log" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Ticket_Type" EntityType="Self.Ticket_Type" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Ticket_User" EntityType="Self.Ticket_User" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="vi_Request" EntityType="Self.vi_Request" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [vi_Request].[orderNumber] AS [orderNumber], 
+    [vi_Request].[requestDate] AS [requestDate], 
+    [vi_Request].[responseDate] AS [responseDate], 
+    [vi_Request].[response] AS [response], 
+    [vi_Request].[ticket] AS [ticket], 
+    [vi_Request].[ticketUser] AS [ticketUser], 
+    [vi_Request].[technician] AS [technician]
+    FROM [dbo].[vi_Request] AS [vi_Request]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="vi_Ticket" EntityType="Self.vi_Ticket" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [vi_Ticket].[cod] AS [cod], 
+    [vi_Ticket].[ticketState] AS [ticketState], 
+    [vi_Ticket].[ticketDescription] AS [ticketDescription], 
+    [vi_Ticket].[ticketPriority] AS [ticketPriority], 
+    [vi_Ticket].[creationDate] AS [creationDate], 
+    [vi_Ticket].[closeDate] AS [closeDate], 
+    [vi_Ticket].[visible] AS [visible], 
+    [vi_Ticket].[technician] AS [technician], 
+    [vi_Ticket].[ticketType] AS [ticketType], 
+    [vi_Ticket].[ticketUser] AS [ticketUser]
+    FROM [dbo].[vi_Ticket] AS [vi_Ticket]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="vi_Ticket_Action" EntityType="Self.vi_Ticket_Action" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [vi_Ticket_Action].[orderNumber] AS [orderNumber], 
+    [vi_Ticket_Action].[beginDate] AS [beginDate], 
+    [vi_Ticket_Action].[endDate] AS [endDate], 
+    [vi_Ticket_Action].[note] AS [note], 
+    [vi_Ticket_Action].[ticket] AS [ticket], 
+    [vi_Ticket_Action].[stepTicketType] AS [stepTicketType], 
+    [vi_Ticket_Action].[stepOrderNumber] AS [stepOrderNumber], 
+    [vi_Ticket_Action].[technician] AS [technician]
+    FROM [dbo].[vi_Ticket_Action] AS [vi_Ticket_Action]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="vi_Ticket_Log" EntityType="Self.vi_Ticket_Log" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [vi_Ticket_Log].[orderNumber] AS [orderNumber], 
+    [vi_Ticket_Log].[sqlCommand] AS [sqlCommand], 
+    [vi_Ticket_Log].[modificationDate] AS [modificationDate], 
+    [vi_Ticket_Log].[ticket] AS [ticket], 
+    [vi_Ticket_Log].[technician] AS [technician]
+    FROM [dbo].[vi_Ticket_Log] AS [vi_Ticket_Log]</DefiningQuery>
+    </EntitySet>
+    <AssociationSet Name="FK__Request__technic__257C74A0" Association="Self.FK__Request__technic__257C74A0">
+      <End Role="Technician" EntitySet="Technician" />
+      <End Role="Request" EntitySet="Request" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Request__ticket__23942C2E" Association="Self.FK__Request__ticket__23942C2E">
+      <End Role="Ticket" EntitySet="Ticket" />
+      <End Role="Request" EntitySet="Request" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Request__ticketU__24885067" Association="Self.FK__Request__ticketU__24885067">
+      <End Role="Ticket_User" EntitySet="Ticket_User" />
+      <End Role="Request" EntitySet="Request" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Step__ticketType__18227982" Association="Self.FK__Step__ticketType__18227982">
+      <End Role="Ticket_Type" EntitySet="Ticket_Type" />
+      <End Role="Step" EntitySet="Step" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Ticket__technici__108157BA" Association="Self.FK__Ticket__technici__108157BA">
+      <End Role="Technician" EntitySet="Technician" />
+      <End Role="Ticket" EntitySet="Ticket" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Ticket__ticketTy__1269A02C" Association="Self.FK__Ticket__ticketTy__1269A02C">
+      <End Role="Ticket_Type" EntitySet="Ticket_Type" />
+      <End Role="Ticket" EntitySet="Ticket" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Ticket__ticketUs__135DC465" Association="Self.FK__Ticket__ticketUs__135DC465">
+      <End Role="Ticket_User" EntitySet="Ticket_User" />
+      <End Role="Ticket" EntitySet="Ticket" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Ticket_Ac__techn__1CE72E9F" Association="Self.FK__Ticket_Ac__techn__1CE72E9F">
+      <End Role="Technician" EntitySet="Technician" />
+      <End Role="Ticket_Action" EntitySet="Ticket_Action" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Ticket_Ac__ticke__1AFEE62D" Association="Self.FK__Ticket_Ac__ticke__1AFEE62D">
+      <End Role="Ticket" EntitySet="Ticket" />
+      <End Role="Ticket_Action" EntitySet="Ticket_Action" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Ticket_Action__1BF30A66" Association="Self.FK__Ticket_Action__1BF30A66">
+      <End Role="Step" EntitySet="Step" />
+      <End Role="Ticket_Action" EntitySet="Ticket_Action" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Ticket_Lo__techn__20B7BF83" Association="Self.FK__Ticket_Lo__techn__20B7BF83">
+      <End Role="Technician" EntitySet="Technician" />
+      <End Role="Ticket_Log" EntitySet="Ticket_Log" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Ticket_Lo__ticke__1FC39B4A" Association="Self.FK__Ticket_Lo__ticke__1FC39B4A">
+      <End Role="Ticket" EntitySet="Ticket" />
+      <End Role="Ticket_Log" EntitySet="Ticket_Log" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

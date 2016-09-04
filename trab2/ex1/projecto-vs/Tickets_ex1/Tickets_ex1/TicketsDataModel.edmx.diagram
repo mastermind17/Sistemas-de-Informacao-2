@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="9be3a55469394d7dae347196a3b62eaa" Name="Diagram1">
+        <EntityTypeShape EntityType="TicketsModel.Request" Width="1.5" PointX="3" PointY="4.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="TicketsModel.Step" Width="1.5" PointX="6" PointY="0.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="TicketsModel.Technician" Width="1.5" PointX="0.75" PointY="4.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="TicketsModel.Ticket" Width="1.5" PointX="6" PointY="4" IsExpanded="true" />
+        <EntityTypeShape EntityType="TicketsModel.Ticket_Action" Width="1.5" PointX="8.25" PointY="4.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="TicketsModel.Ticket_Log" Width="1.5" PointX="11.25" PointY="4.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="TicketsModel.Ticket_Type" Width="1.5" PointX="3.75" PointY="1.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="TicketsModel.Ticket_User" Width="1.5" PointX="3.75" PointY="8" IsExpanded="true" />
+        <EntityTypeShape EntityType="TicketsModel.vi_Request" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TicketsModel.vi_Ticket" Width="1.5" PointX="8.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TicketsModel.vi_Ticket_Action" Width="1.5" PointX="0.75" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TicketsModel.vi_Ticket_Log" Width="1.5" PointX="5.75" PointY="8.75" IsExpanded="true" />
+        <AssociationConnector Association="TicketsModel.FK__Request__technic__1B33F057" ManuallyRouted="false" />
+        <AssociationConnector Association="TicketsModel.FK__Request__ticket__194BA7E5" ManuallyRouted="false" />
+        <AssociationConnector Association="TicketsModel.FK__Request__ticketU__1A3FCC1E" ManuallyRouted="false" />
+        <AssociationConnector Association="TicketsModel.FK__Step__ticketType__0DD9F539" ManuallyRouted="false" />
+        <AssociationConnector Association="TicketsModel.FK__Ticket_Action__11AA861D" ManuallyRouted="false" />
+        <AssociationConnector Association="TicketsModel.FK__Ticket__technici__0638D371" ManuallyRouted="false" />
+        <AssociationConnector Association="TicketsModel.FK__Ticket_Ac__techn__129EAA56" ManuallyRouted="false" />
+        <AssociationConnector Association="TicketsModel.FK__Ticket_Lo__techn__166F3B3A" ManuallyRouted="false" />
+        <AssociationConnector Association="TicketsModel.FK__Ticket__ticketTy__08211BE3" ManuallyRouted="false" />
+        <AssociationConnector Association="TicketsModel.FK__Ticket__ticketUs__0915401C" ManuallyRouted="false" />
+        <AssociationConnector Association="TicketsModel.FK__Ticket_Ac__ticke__10B661E4" ManuallyRouted="false" />
+        <AssociationConnector Association="TicketsModel.FK__Ticket_Lo__ticke__157B1701" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
